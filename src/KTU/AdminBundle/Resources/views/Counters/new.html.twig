@@ -1,0 +1,28 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% form_theme form 'KTUCountersBundle:Form:form.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Counter creation</h3></div>
+{% endblock %}
+
+{% block body -%}
+    <div class="well">
+        <a href="{{ path('counters') }}">
+            Back to the list
+        </a>
+    </div>
+    <div class="line"></div>
+    {{ form_start(form, {'attr': {'role': 'form', 'class': 'form-horizontal' }}) }}
+    {% if not form.vars.valid %}
+        <div class="alert alert-warning">
+            {{ form_errors(form) }}
+            {% for child in form %}
+                {{ form_errors(child) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {{ form(form) }}
+    {{ form_end(form) }}
+</ul>
+{% endblock %}

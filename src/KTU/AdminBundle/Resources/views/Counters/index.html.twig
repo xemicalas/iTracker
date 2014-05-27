@@ -1,0 +1,54 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Counters list</h3></div>
+{% endblock %}
+
+{% block body -%}
+    <div class="well">
+        <a href="{{ path('counters_new') }}">Create a new counter</a>
+    </div>
+    <div class="line"></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Counter description</th>
+            <th style="width:50px"></th>
+            <th style="width:50px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('counters_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>
+                    {% if entity.url|length > 30 %}
+                        <span title="{{ entity.url }}">{{ entity.url|slice(0,30) }}...</span>
+                    {% else %}
+                        {{ entity.url }}
+                    {% endif %}
+
+                </td>
+                <td>
+                    {% if entity.counterdesc|length > 100 %}
+                        <span title="{{ entity.counterdesc }}">{{ entity.counterdesc|slice(0,100) }}...</span>
+                    {% else %}
+                        {{ entity.counterdesc }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('counters_show', { 'id': entity.id }) }}">
+                        <span class="glyphicon glyphicon-file tooltip-text" data-toggle="tooltip"
+                              data-placement="right" title="Show"></span></a></a>
+                </td>
+                <td><a href="{{ path('counters_edit', { 'id': entity.id }) }}">
+                        <span class="glyphicon glyphicon-edit tooltip-text" data-toggle="tooltip"
+                              data-placement="right" title="Edit"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'KTUCountersBundle::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {{ counter.name }}
+{% endblock %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>{{ counter.name }}</h3></div>
+{% endblock %}
+
+{% block body %}
+    <div class="well">
+        <ul class="stats counter-stat">
+            <li><span class="desc">URL</span>
+                <span class="pull-right"><a href="http://{{ counter.url }}"
+                                            target="_blank">{{ counter.name }}</a></span></li>
+            <li><span class="desc">Category</span> <span class="pull-right">{{ category.category }}</span></li>
+            <li><span class="desc">Total unique visitors</span>
+                <span class="pull-right">{{ totals.uniq|number_format }}</span></li>
+            <li><span class="desc">Total hits</span>
+                <span class="pull-right">{{ totals.total|number_format }}</span></li>
+            <li><span class="desc">Description</span></li>
+        </ul>
+        <div class="line dark"></div>
+        <span class="counter-stat">{{ counter.counterDesc }}</span>
+    </div>
+    <h4>Website's statistics</h4>
+    {% if stats|length > 0 %}
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Unique visitors</th>
+                <th>Hits</th>
+                <th>Date</th>
+            </tr>
+            {% for stat in stats %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ stat.uniq|number_format }}</td>
+                    <td>{{ stat.total|number_format }}</td>
+                    <td>{{ stat.date.date|date('Y-m-d') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="line"></div>
+        <div class="alert alert-warning">Currently, there are no statistics about this website.</div>
+    {% endif %}
+{% endblock %}

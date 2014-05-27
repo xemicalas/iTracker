@@ -1,0 +1,45 @@
+ktu_counters_homepage:
+    pattern:  /
+    defaults: { _controller: KTUCountersBundle:Default:index }
+
+ktu_counters_change_locale:
+    pattern: /locale/{locale}
+    defaults: { _controller: KTUCountersBundle:Default:changeLocale }
+
+ktu_counters_show_category:
+    pattern: /category/{id}/{page}
+    defaults: { _controller: KTUCountersBundle:Category:showCategory, page: 1 }
+    requirements:
+        page: \d+
+
+ktu_counters_show_tops:
+    pattern: /tops
+    defaults: { _controller: KTUCountersBundle:Tops:showTops }
+
+ktu_counters_show_profile:
+    pattern: /profile
+    defaults: { _controller: KTUCountersBundle:Profile:show }
+
+ktu_counters_show_counter:
+    pattern: /counter/{id}/view/
+    defaults: { _controller: KTUCountersBundle:Counter:showCounter }
+
+ktu_counters_create_counter:
+    pattern: /counter/create
+    defaults: { _controller: KTUCountersBundle:Counter:createCounter }
+
+ktu_counters_delete_counter:
+    pattern: /counter/{id}/delete/
+    defaults: { _controller: KTUCountersBundle:Counter:deleteCounter }
+
+ktu_counters_edit_counter:
+    pattern: /counter/{id}/edit/
+    defaults: { _controller: KTUCountersBundle:Counter:editCounter }
+
+ktu_counters_edit_counter_colors:
+    pattern: /counter/{id}/editcolors/
+    defaults: { _controller: KTUCountersBundle:Counter:editCounterColors }
+
+ktu_counters_render_counter:
+    pattern: /render/{id}
+    defaults: { _controller: KTUCountersBundle:ImageRenderer:renderImage }

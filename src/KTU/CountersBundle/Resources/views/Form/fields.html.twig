@@ -1,0 +1,24 @@
+{% block form_row %}
+    {% spaceless %}
+        {% if "checkbox" in form.vars.block_prefixes %}
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(form, {'attr': {'class': 'btn btn-default', 'placeholder': form.vars.label} }) }}
+                            {{ form_label(form) }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="form-group">
+                {{ form_label(form, null, {'label_attr': {'class': 'col-sm-3 control-label' } }) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': form.vars.label} }) }}
+                </div>
+            </div>
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock form_row %}

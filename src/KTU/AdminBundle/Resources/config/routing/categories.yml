@@ -1,0 +1,30 @@
+categories:
+    pattern:  /
+    defaults: { _controller: "KTUAdminBundle:Categories:index" }
+
+categories_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "KTUAdminBundle:Categories:show" }
+
+categories_new:
+    pattern:  /new
+    defaults: { _controller: "KTUAdminBundle:Categories:new" }
+
+categories_create:
+    pattern:  /create
+    defaults: { _controller: "KTUAdminBundle:Categories:create" }
+    requirements: { _method: post }
+
+categories_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "KTUAdminBundle:Categories:edit" }
+
+categories_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "KTUAdminBundle:Categories:update" }
+    requirements: { _method: post|put }
+
+categories_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "KTUAdminBundle:Categories:delete" }
+    requirements: { _method: post|delete }

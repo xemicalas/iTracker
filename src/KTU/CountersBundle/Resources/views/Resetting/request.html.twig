@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>{{ 'resetting.forgot'|trans }}</h3></div>
+{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+{% endblock fos_user_content %}

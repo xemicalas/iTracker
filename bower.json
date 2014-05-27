@@ -1,0 +1,12 @@
+{
+  "name": "counters-registry",
+  "version": "1.0",
+  "description": "counters-registry",
+  "homepage": "http://marmis2.stud.if.ktu.lt/",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "3.1.1",
+    "jquery": "2*",
+    "jquery-ui": "1.10.2"
+  }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="KTU\CountersBundle\Entity\Counters" table="counters">
+    <indexes>
+      <index name="fk_counters_users_idx" columns="user_id"/>
+      <index name="fk_counters_categories1_idx" columns="cat_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="url_UNIQUE" columns="url"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="100" nullable="false"/>
+    <field name="url" type="string" column="url" length="45" nullable="false"/>
+    <field name="counterdesc" type="text" column="counterDesc" nullable="true"/>
+    <field name="backgroundColor" type="string" column="backgroundColor" length="7" nullable="false"/>
+    <field name="borderColor" type="string" column="borderColor" length="7" nullable="false"/>
+    <field name="textColor" type="string" column="textColor" length="7" nullable="false"/>
+    <field name="uniqueColor" type="string" column="uniqueColor" length="7" nullable="false"/>
+    <field name="totalColor" type="string" column="totalColor" length="7" nullable="false"/>
+    <field name="barTotalColor" type="string" column="barTotalColor" length="7" nullable="false"/>
+    <field name="barUniqueColor" type="string" column="barUniqueColor" length="7" nullable="false"/>
+    <field name="transparentBackground" type="boolean" column="transparentBackground" nullable="false"/>
+    <one-to-many target-entity="CounterStatistics" field="statistics" mapped-by="counter_id"></one-to-many>
+    <many-to-one field="cat" target-entity="Categories">
+      <join-columns>
+        <join-column name="cat_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="user_id" target-entity="Users">
+      <join-columns>
+        <join-column name="user_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

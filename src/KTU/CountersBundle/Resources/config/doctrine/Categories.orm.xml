@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="KTU\CountersBundle\Entity\Categories" table="categories">
+    <unique-constraints>
+      <unique-constraint name="category_UNIQUE" columns="category"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="category" type="string" column="category" length="255" nullable="false"/>
+    <one-to-many target-entity="Counters" field="counters"  mapped-by="cat">
+    </one-to-many>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block categories %}
+    {% for cat in categories %}
+            {% if app.request.attributes.get('_route') == 'ktu_counters_show_category'
+            and app.request.attributes.get('_route_params')['id'] == cat.id %}
+            <li class="active"><a href="{{ path('ktu_counters_show_category', {'id': cat.id, 'page': 1}) }}">
+                    <span class="badge pull-right">{{ cat.counters_amount }}</span>{{ cat.category }}</a></li>
+            {% else %}
+                <li><a href="{{ path('ktu_counters_show_category', {'id': cat.id, 'page': 1}) }}">
+                        <span class="badge pull-right">{{ cat.counters_amount }}</span>{{ cat.category }}</a></li>
+            {% endif %}
+        {% endfor %}
+{% endblock %}

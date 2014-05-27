@@ -1,0 +1,15 @@
+ktu_admin_homepage:
+    pattern:  /
+    defaults: { _controller: KTUAdminBundle:Default:index }
+
+ktu_admin_categories:
+    resource: "@KTUAdminBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories
+
+ktu_admin_counters:
+    resource: "@KTUAdminBundle/Resources/config/routing/counters.yml"
+    prefix:   /counters
+
+ktu_admin_users:
+    resource: "@KTUAdminBundle/Resources/config/routing/users.yml"
+    prefix:   /users

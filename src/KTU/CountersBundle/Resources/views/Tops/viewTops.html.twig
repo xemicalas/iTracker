@@ -1,0 +1,32 @@
+{% extends 'KTUCountersBundle::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Tops
+{% endblock %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Todays top 100 pages</h3></div>
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Page</th>
+            <th>Unique</th>
+            <th>Hits</th>
+            <th style="width: 50px"></th>
+        </tr>
+        {% for counter in counters %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="http://{{ counter.url }}" target="_blank">{{ counter.name }}</a></td>
+                <td>{{ counter.counter_uniq|number_format }}</td>
+                <td>{{ counter.counter_all|number_format }}</td>
+                <td><a href="{{ path('ktu_counters_show_counter', {'id': counter.id}) }}">
+                        <span class="glyphicon glyphicon-stats tooltip-text" data-toggle="tooltip"
+                                      data-placement="right" title="Statistics"></span></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

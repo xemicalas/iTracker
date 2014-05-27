@@ -1,0 +1,42 @@
+<?php
+
+namespace KTU\CountersBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CounterStatistics
+ *
+ * @ORM\Table(name="counter_statistics", indexes={@ORM\Index(name="fk_counter_statistics_counters1", columns={"counter_id"})})
+ * @ORM\Entity
+ */
+class CounterStatistics
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=15, nullable=false)
+     */
+    private $ip;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \KTU\CountersBundle\Entity\Counters
+     *
+     * @ORM\ManyToOne(targetEntity="KTU\CountersBundle\Entity\Counters")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="counter_id", referencedColumnName="id")
+     * })
+     */
+    private $counter;
+
+
+}

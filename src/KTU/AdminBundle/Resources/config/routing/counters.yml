@@ -1,0 +1,30 @@
+counters:
+    pattern:  /
+    defaults: { _controller: "KTUAdminBundle:Counters:index" }
+
+counters_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "KTUAdminBundle:Counters:show" }
+
+counters_new:
+    pattern:  /new
+    defaults: { _controller: "KTUAdminBundle:Counters:new" }
+
+counters_create:
+    pattern:  /create
+    defaults: { _controller: "KTUAdminBundle:Counters:create" }
+    requirements: { _method: post }
+
+counters_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "KTUAdminBundle:Counters:edit" }
+
+counters_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "KTUAdminBundle:Counters:update" }
+    requirements: { _method: post|put }
+
+counters_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "KTUAdminBundle:Counters:delete" }
+    requirements: { _method: post|delete }

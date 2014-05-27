@@ -1,0 +1,29 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form 'KTUCountersBundle:Form:fields.html.twig' %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+      class="fos_user_registration_register form-horizontal" role="form">
+    {% if not form.vars.valid %}
+        <div class="alert alert-warning">
+            {{ form_errors(form) }}
+            {{ form_errors(form.username) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_errors(form.plainPassword.second) }}
+        </div>
+    {% endif %}
+
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_rest(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+            <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-default"/>
+        </div>
+    </div>
+</form>

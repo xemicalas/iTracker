@@ -1,0 +1,13 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>{{ 'resetting.request.submit'|trans }}</h3></div>
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="alert alert-success">
+        {{ 'resetting.check_email'|trans({'%email%': email}) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+KTU\CountersBundle\Entity\Counters:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [url]
+            message: 'This URL already exists.'
+            groups: [create]
+    properties:
+        cat:
+            - NotBlank:
+                message: 'Category must not be empty.'
+                groups: [create,edit]
+        name:
+            - NotBlank:
+                message: 'Counters name is empty.'
+                groups: [create,edit]
+            - Length:
+                max: 100
+                maxMessage: 'Countes name is too long. Max {{ limit }} characters allowed.'
+                groups: [create,edit]
+        url:
+            - Notblank:
+                message: 'URL is empty.'
+                groups: [create,edit]
+            - Length:
+                max: 45
+                maxMessage: 'URL is too long. Max {{ limit }} characters allowed.'
+                groups: [create,edit]
+            - Regex:
+                pattern: '/^https?:\/\//'
+                match: false
+                message: 'URL should be without http://'
+                groups: [create,edit]
+        counterdesc:
+            - Notblank:
+                message: 'Counter description is empty.'
+                groups: [create,edit]
+        backgroundColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid backgound color format.'
+                groups: [editColors]
+        borderColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid border color format.'
+                groups: [editColors]
+        textColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid text color format.'
+                groups: [editColors]
+        uniqueColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid unique text color format.'
+                groups: [editColors]
+        totalColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid total text color format.'
+                groups: [editColors]
+        barTotalColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid strips total background color format.'
+                groups: [editColors]
+        barUniqueColor:
+            - Notblank:
+                groups: [editColors]
+            - Regex:
+                pattern: '/^#[A-Fa-f0-9]{6}$/'
+                match: true
+                message: 'Invalid strips unique background color format.'
+                groups: [editColors]

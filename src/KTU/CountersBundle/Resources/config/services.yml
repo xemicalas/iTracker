@@ -1,0 +1,37 @@
+parameters:
+    ktu_counters.index_page: 'marmis2.stud.if.ktu.lt/symfony/web'
+    ktu_counters.page_size: 20
+    ktu_counters.top_pages: 10
+    ktu_counters.portable_image: '<img src="http://%ktu_counters.index_page%/render/%d" alt="%ktu_counters.index_page%"/>'
+    ktu_counters.portable_image_url: '<a href="http://%ktu_counters.index_page%/counter/%%d/view">%ktu_counters.portable_image%</a>'
+    ktu_counters.background_color: '#F0F0F0'
+    ktu_counters.text_color: '#A3A3A3'
+    ktu_counters.unique_color: '#A3A3A3'
+    ktu_counters.total_color: '#A3A3A3'
+    ktu_counters.border_color: '#A3A3A3'
+    ktu_counters.bar_total_color: '#A3A3A3'
+    ktu_counters.bar_unique_color: '#636363'
+    ktu_counters.transparent_background: true
+
+services:
+    ktu_counters.kernel_event_listener:
+        class: KTU\CountersBundle\EventListener\KernelListener
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    ktu.handler.controller:
+        class: KTU\CountersBundle\Kernel\Handler
+        arguments: [@service_container]
+
+    ktu_counters.profile.form.type:
+        class: KTU\CountersBundle\Form\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: ktu_counters_profile_edit }
+
+    kernel.listener.exception_listener:
+        class: KTU\CountersBundle\EventListener\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

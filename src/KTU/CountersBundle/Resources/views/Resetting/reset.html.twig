@@ -1,0 +1,8 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block heading %}
+    <div class="panel-heading"><h3>{{ 'resetting.request.submit'|trans }}</h3></div>
+{% endblock %}
+{% block fos_user_content %}
+{% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+{% endblock fos_user_content %}

@@ -1,0 +1,41 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Users list</h3></div>
+{% endblock %}
+{% block body -%}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Enabled</th>
+            <th>Locked</th>
+            <th style="width:50px"></th>
+            <th style="width:50px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('users_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.roles[0] }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.locked }}</td>
+                <td>
+                <td>
+                    <a href="{{ path('users_show', { 'id': entity.id }) }}">
+                        <span class="glyphicon glyphicon-file tooltip-text" data-toggle="tooltip"
+                              data-placement="right" title="Show"></span></a></a>
+                </td>
+                <td><a href="{{ path('users_edit', { 'id': entity.id }) }}">
+                        <span class="glyphicon glyphicon-edit tooltip-text" data-toggle="tooltip"
+                              data-placement="right" title="Edit"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Counter ({{ entity.name }})</h3></div>
+{% endblock %}
+
+{% block body -%}
+    <div class="well">
+        <ul class="stats">
+            <li><a href="{{ path('counters') }}">Back to the list</a></li>
+            <li><a href="{{ path('counters_edit', { 'id': entity.id }) }}">Edit</a></li>
+            <li class="list-form">{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+    <div class="line dark"></div>
+    <ul class="stats counter-stat">
+        <li><span class="desc">Name</span>
+            <span class="pull-right">{{ entity.name }}</span></li>
+        <li><span class="desc">Counter description</span></li>
+    </ul>
+    <div class="line dark"></div>
+    <span class="counter-stat">{{ entity.counterDesc }}</span>
+    <div class="line dark"></div>
+    <ul class="stats counter-stat">
+        <li><span class="desc">Background color</span>
+            <span class="pull-right">{{ entity.backgroundColor }}</span></li>
+        <li><span class="desc">Border color</span>
+            <span class="pull-right">{{ entity.borderColor }}</span></li>
+        <li><span class="desc">Text color</span>
+            <span class="pull-right">{{ entity.textColor }}</span></li>
+        <li><span class="desc">Unique number's color</span>
+            <span class="pull-right">{{ entity.uniqueColor }}</span></li>
+        <li><span class="desc">Total number's color</span>
+            <span class="pull-right">{{ entity.totalColor }}</span></li>
+        <li><span class="desc">Strip's total background color</span>
+            <span class="pull-right">{{ entity.barTotalColor }}</span></li>
+        <li><span class="desc">Strip's unique background color</span>
+            <span class="pull-right">{{ entity.barUniqueColor }}</span></li>
+        <li><span class="desc">Is transparent background</span>
+            <span class="pull-right">
+                {% if entity.transparentBackground %}Yes{% else %}No{% endif %}
+            </span></li>
+    </ul>
+{% endblock %}

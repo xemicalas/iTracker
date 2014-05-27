@@ -1,0 +1,21 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Categories ({{ entity.category }})</h3></div>
+{% endblock %}
+
+{% block body -%}
+    <div class="well">
+        <ul class="stats">
+            <li><a href="{{ path('categories') }}">Back to the list</a></li>
+            <li><a href="{{ path('categories_edit', { 'id': entity.id }) }}">Edit</a></li>
+            <li class="list-form">{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+    <div class="line dark"></div>
+    <ul class="stats counter-stat">
+        <li><span class="desc">ID</span>
+            <span class="pull-right">{{ entity.id }}</span></li>
+        <li><span class="desc">Category</span> <span class="pull-right">{{ entity.category }}</span></li>
+    </ul>
+{% endblock %}

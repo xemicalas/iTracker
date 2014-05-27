@@ -1,0 +1,15 @@
+{% extends 'KTUCountersBundle::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - 404 Not found
+{% endblock %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>404 Not found</h3></div>
+{% endblock %}
+
+{% block body %}
+<div class="alert alert-danger">
+    Oops! Looks like this page doesn't exists.
+</div>
+{% endblock %}

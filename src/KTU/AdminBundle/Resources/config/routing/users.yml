@@ -1,0 +1,21 @@
+users:
+    pattern:  /
+    defaults: { _controller: "KTUAdminBundle:Users:index" }
+
+users_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "KTUAdminBundle:Users:show" }
+
+users_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "KTUAdminBundle:Users:edit" }
+
+users_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "KTUAdminBundle:Users:update" }
+    requirements: { _method: post|put }
+
+users_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "KTUAdminBundle:Users:delete" }
+    requirements: { _method: post|delete }

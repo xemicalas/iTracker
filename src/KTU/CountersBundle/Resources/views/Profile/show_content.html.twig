@@ -1,0 +1,115 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if counters|length > 0 %}
+    <h4>My counters</h4>
+    <div class="line"></div>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Page</th>
+            <th style="width: 50px"></th>
+            <th style="width: 50px"></th>
+            <th style="width: 50px"></th>
+            <th style="width: 50px"></th>
+        </tr>
+        {% for counter in counters %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="http://{{ counter.url }}" target="_blank">{{ counter.name }}</a></td>
+                <td><a href="{{ path('ktu_counters_edit_counter', {'id': counter.id}) }}">
+                        <span class="glyphicon glyphicon-edit tooltip-text" data-toggle="tooltip"
+                                      data-placement="right" title="Edit"></span></a></td>
+                <td><a href="#"><span class="glyphicon glyphicon-file tooltip-text" data-toggle="modal"
+                                      data-placement="right" data-target="#modal-code{{ loop.index }}"
+                                      title="Counter's HTML code"></span></a></td>
+                <td><a href="{{ path('ktu_counters_show_counter', {'id': counter.id}) }}">
+                        <span class="glyphicon glyphicon-stats tooltip-text" data-toggle="tooltip"
+                              data-placement="right" title="Statistics"></span></a></td>
+                <td><a href="#"><span class="glyphicon glyphicon-trash tooltip-text" data-toggle="modal"
+                                      data-placement="right" data-target="#modal-delete{{ loop.index }}"
+                                      title="Detele counter"></span></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% for counter in counters %}
+        <div class="modal fade" id="modal-code{{ loop.index }}" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Counter's HTML code</h4>
+                    </div>
+                    <div class="modal-body">
+                        In order to start tracking your website, you need to put your counter's image on your website.
+                        Here's a HTML code of your counter's image:
+                        <pre class="code-section">{{ portable_image_url|format(counter.id, counter.id) }}</pre>
+                        Your counter's image should look like:<br/>
+                        {{ portable_image_url|format(counter.id, counter.id)|raw }}<br/>
+                        After you place the image, we'll be able to track successfully your websites traffic.<br/>
+                        Also don't forget that you can
+                        <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id }) }}">modify</a> you counter's styling in your profile.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-delete{{ loop.index }}" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">{{ counter.name }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger modal-alert">
+                            Are you sure want to delete this counter?<br/>
+                            Deleting counter will erase the counter and counters statistics.
+                            After that you'll be unable to view this counter.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ path('ktu_counters_delete_counter', {'id': counter.id}) }}"
+                           class="btn btn-default">Yes</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for counter in counters %}
+        {% if counter.statistics|length > 0 %}
+            <h4>{{ counter.name }}</h4>
+            <div class="line"></div>
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Unique</th>
+                    <th>Hits</th>
+                    <th>Date</th>
+                </tr>
+                {% for stats in counter.statistics %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ stats.uniq|number_format }}</td>
+                        <td>{{ stats.total|number_format }}</td>
+                        <td>{{ stats.date.date|date('Y-m-d') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="alert alert-warning">
+        You currently don't have any created counters,
+        <a href="{{ path('ktu_counters_create_counter') }}">create new counter.</a>
+    </div>
+{% endif %}

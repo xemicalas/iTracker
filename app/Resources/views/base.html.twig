@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}iTracker{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#top-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="brand-logo" href="{{ path('ktu_counters_homepage') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="logo"/>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="top-navbar">
+            <ul class="nav navbar-nav navbar-left">
+                {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="dropdown" id="dropdown-login">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+
+                        <div class="dropdown-menu" id="login-dropdown">
+                            <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}"/>
+
+                                <div class="form-group">
+                                    <label for="username-dropdown">Username</label>
+                                    <input type="text" id="username-dropdown" name="_username" required="required"
+                                           class="form-control" placeholder="Username"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password-dropdown">Password</label>
+                                    <input type="password" id="password-dropdown" name="_password" required="required"
+                                           class="form-control" placeholder="Password"/>
+                                </div>
+
+                                <div class="form-group form-text">
+                                    <a href="{{ path("fos_user_resetting_request") }}">Forgot password?</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="remember_me-dropdown" name="_remember_me"
+                                                   value="on"/>
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <input type="submit" id="_submit-dropdown" name="_submit" value="Login"
+                                       class="btn btn-default"/>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                    </li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Counters <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('ktu_counters_create_counter') }}">Create counter</a></li>
+                            <li><a href="{{ path('ktu_counters_show_profile') }}">My counters</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('fos_user_profile_edit') }}">Edit profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="page-header" id="header">
+        <h1 id="heading">iTracker - Counters registry</h1>
+
+        <h2>
+            <small>User tracking system for your website</small>
+        </h2>
+    </div>
+    <div class="row" id="body">
+        <div class="col-md-3" id="sidebar">
+            <div class="panel panel-default" id="menu">
+                <ul class="nav nav-pills nav-stacked">
+                    {% if app.request.attributes.get('_route') == 'ktu_counters_homepage' %}
+                        <li class="active"><a href="{{ path('ktu_counters_homepage') }}"><span
+                                        class="glyphicon glyphicon-home"></span> Main page</a></li>
+                    {% else %}
+                        <li><a href="{{ path('ktu_counters_homepage') }}"><span
+                                        class="glyphicon glyphicon-home"></span> Main page</a></li>
+                    {% endif %}
+
+                    {% if app.request.attributes.get('_route') == 'ktu_counters_show_category' %}
+                        <li class="active"><a href="#"><span
+                                        class="glyphicon glyphicon-list-alt"></span>
+                                Categories <span
+                                        class="pull-right caret"></span></a></li>
+                    {% else %}
+                        <li><a href="#"><span
+                                        class="glyphicon glyphicon-list-alt"></span>
+                                Categories <span
+                                        class="pull-right caret"></span></a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav nav-pills nav-stacked sub-list">
+                    {% block categories %}{% endblock %}
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    {% if app.request.attributes.get('_route') == 'ktu_counters_show_tops' %}
+                        <li class="active"><a href="{{ path('ktu_counters_show_tops') }}"><span
+                                        class="glyphicon glyphicon-star"></span> Tops</a></li>
+                    {% else %}
+                        <li><a href="{{ path('ktu_counters_show_tops') }}"><span
+                                        class="glyphicon glyphicon-star"></span> Tops</a></li>
+                    {% endif %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if app.request.attributes.get('_route') == 'ktu_counters_show_profile' %}
+                        <li class="active"><a href="{{ path('ktu_counters_show_profile') }}">
+                                <span class="glyphicon glyphicon-user"></span> My counters
+                            </a></li>
+                    {% else %}
+                        <li><a href="{{ path('ktu_counters_show_profile') }}">
+                                <span class="glyphicon glyphicon-user"></span> My counters
+                            </a></li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Admin CP<span
+                                    class="pull-right caret"></span></a></li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked sub-list">
+                    <li><a href="{{ path('categories') }}">Categories</a></li>
+                    <li><a href="{{ path('counters') }}">Counters</a></li>
+                    <li><a href="{{ path('users') }}">Users</a></li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    {% endif %}
+
+                    {% if app.request.attributes.get('_route') == 'fos_user_security_logout' %}
+                        <li class="active"><a href="{{ path('fos_user_security_logout') }}">
+                                <span class="glyphicon glyphicon-log-out"></span> Logout
+                            </a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_logout') }}">
+                                <span class="glyphicon glyphicon-log-out"></span> Logout
+                            </a></li>
+                    {% endif %}
+                    {% else %}
+                        {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}
+                            <li class="active"><a href="{{ path('fos_user_security_login') }}">
+                                    <span class="glyphicon glyphicon-log-in"></span> Sign in</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    <span class="glyphicon glyphicon-log-in"></span> Sign in</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}
+                            <li class="active"><a href="{{ path('fos_user_registration_register') }}">
+                                    <span class="glyphicon glyphicon-pencil"></span> Sign up</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">
+                                    <span class="glyphicon glyphicon-pencil"></span> Sign up</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="panel panel-default hidden-xs" id="sub-content">
+                <ul class="stats">
+                    <li>Unique visitors today <span class="stats stats-number pull-right">
+                            {{ counter_stats_today.uniq|number_format }}</span></li>
+                    <li>Number of clicks today <span class="stats stats-number pull-right">
+                            {{ counter_stats_today.total|number_format }}</span></li>
+                    <li>Total clicks <span class="stats stats-number pull-right">
+                            {{ counter_stats.total|number_format }}</span></li>
+                    <li>Total visitors <span class="stats stats-number pull-right">
+                            {{ counter_stats.uniq|number_format }}</span></li>
+                    <li>Counters registered <span class="stats stats-number pull-right">
+                            {{ counters_total|number_format }}</span></li>
+                    <li>Users registered <span class="stats stats-number pull-right">
+                            {{ users_total|number_format }}</span></li>
+                </ul>
+                <div class="line"></div>
+                <div id="banners" class="center-block">
+                    <img src="{{ asset('images/placeholder_140x140.jpg') }}" alt="140x140"
+                         class="img-rounded img-banner"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" id="content">
+            <div class="panel panel-default">
+                {% block heading %}{% endblock %}
+                <div class="panel-body">
+                    {% block body %}{% endblock %}
+                </div>
+                <div class="panel-footer">
+                    &copy; 2014 iTracker, All rights reserved
+                    <div id="counter-footer">
+                        <a href="http://marmis2.stud.if.ktu.lt/symfony/web/counter/5/view">
+                            <img src="http://marmis2.stud.if.ktu.lt/symfony/web/render/5"
+                                 alt="marmis2.stud.if.ktu.lt/symfony/web/" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+</body>
+</html>

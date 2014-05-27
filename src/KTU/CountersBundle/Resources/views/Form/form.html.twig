@@ -1,0 +1,34 @@
+{% block form %}
+    {% spaceless %}
+        {% for child in form %}
+            {% if "hidden" not in child.vars.block_prefixes and
+            "submit" not in child.vars.block_prefixes and
+            "checkbox" not in child.vars.block_prefixes %}
+                <div class="form-group">
+                    {{ form_label(child, null, {'label_attr': {'class': 'col-sm-3 control-label' } }) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(child, {'attr': {'class': 'form-control', 'placeholder': child.vars.label} }) }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if "submit" in child.vars.block_prefixes %}
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-4">
+                        {{ form_row(child, {'attr': {'class': 'btn btn-default'} }) }}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if "checkbox" in child.vars.block_prefixes %}
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-4">
+                        <div class="checkbox">
+                            {{ form_row(child, {'attr': {'class': 'btn btn-default'} }) }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock form %}

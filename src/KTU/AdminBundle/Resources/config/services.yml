@@ -1,0 +1,7 @@
+parameters:
+#    ktu_admin.example.class: KTU\AdminBundle\Example
+
+services:
+#    ktu_admin.example:
+#        class: %ktu_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

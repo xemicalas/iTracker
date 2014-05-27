@@ -1,0 +1,158 @@
+{% extends 'KTUCountersBundle::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Counter's appearance
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/colorpicker.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Edit counter's appearance ({{ counter.name }})</h3></div>
+{% endblock %}
+
+{% block body %}
+
+    {% if isEdited %}
+        <div class="alert alert-success">
+            Counter's appearance has been successfully changed.
+        </div>
+    {% endif %}
+
+    {{ form_start(form, {'attr': {'role': 'form', 'class': 'form-horizontal' }}) }}
+    {% if not form.vars.valid %}
+        <div class="alert alert-warning">
+            {{ form_errors(form) }}
+            {{ form_errors(form.backgroundColor) }}
+            {{ form_errors(form.borderColor) }}
+            {{ form_errors(form.textColor) }}
+            {{ form_errors(form.uniqueColor) }}
+            {{ form_errors(form.totalColor) }}
+            {{ form_errors(form.barTotalColor) }}
+            {{ form_errors(form.barUniqueColor) }}
+            {{ form_errors(form.transparentBackground) }}
+        </div>
+    {% endif %}
+
+    <div class="form-group">
+        {{ form_label(form.backgroundColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#background-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.backgroundColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="background-result"
+                 style="background-color: {{ counter.backgroundColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.borderColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#border-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.borderColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="border-result"
+                 style="background-color: {{ counter.borderColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.textColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#text-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.textColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="text-result"
+                 style="background-color: {{ counter.textColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.uniqueColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#unique-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.uniqueColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="unique-result"
+                 style="background-color: {{ counter.uniqueColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.totalColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#total-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.totalColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="total-result"
+                 style="background-color: {{ counter.totalColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.barTotalColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#bar-total-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.barTotalColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="bar-total-result"
+                 style="background-color: {{ counter.barTotalColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.barUniqueColor) }}
+        <div class="col-sm-4">
+            <div class="input-append color" data-color-target="#bar-unique-result"
+                 data-color="{{ counter.backgroundColor }}" data-color-format="hex">
+                {{ form_widget(form.barUniqueColor, {'attr': {'class': 'form-control colorpicker' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="add-on color-result" id="bar-unique-result"
+                 style="background-color: {{ counter.barUniqueColor }}"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+            <div class="checkbox">
+                {{ form_row(form.transparentBackground) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+            {{ form_row(form.edit, {'attr': {'class': 'btn btn-default' }}) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-colorpicker.js') }}"></script>
+{% endblock %}

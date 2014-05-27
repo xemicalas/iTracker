@@ -1,0 +1,32 @@
+<?php
+
+namespace KTU\CountersBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Categories
+ *
+ * @ORM\Table(name="categories", uniqueConstraints={@ORM\UniqueConstraint(name="category_UNIQUE", columns={"category"})})
+ * @ORM\Entity
+ */
+class Categories
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255, nullable=false)
+     */
+    private $category;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

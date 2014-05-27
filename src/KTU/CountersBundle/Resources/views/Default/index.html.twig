@@ -1,0 +1,54 @@
+{% extends 'KTUCountersBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>Main page</h3></div>
+{% endblock %}
+
+{% block body %}
+    <div id="top-pages">
+        <h4>Todays top pages</h4>
+        <div class="line"></div>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Page</th>
+                <th>Unique</th>
+                <th>Hits</th>
+                <th style="width: 50px"></th>
+            </tr>
+            {% for counter in counters %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="http://{{ counter.url }}" target="_blank">{{ counter.name }}</a></td>
+                    <td>{{ counter.counter_uniq|number_format }}</td>
+                    <td>{{ counter.counter_all|number_format }}</td>
+                    <td><a href="{{ path('ktu_counters_show_counter', {'id': counter.id}) }}">
+                            <span class="glyphicon glyphicon-stats tooltip-text" data-toggle="tooltip"
+                                          data-placement="right" title="Statistics"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="categories-home">
+        <h4>Categories</h4>
+        <div class="line"></div>
+        {% if categories|length > 0 %}
+            {% set cnt = 1 %}
+            {% set size = categories|length %}
+            {% for category in categories %}
+                {% if (cnt == 1) or (cnt == ((size / 2)|round(0, 'ceil') + 1)) %}
+                    <div class="col-sm-6">
+                    <ul class="nav">
+                {% endif %}
+                <li class="category-list">
+                    <a href="{{ path('ktu_counters_show_category', {'id': category.id, 'page': 1}) }}">
+                        <span class="badge pull-right category-badge">{{ category.counters_amount }}</span> {{ category.category }}</a></li>
+                {% if (cnt == (size / 2)|round(0, 'ceil')) or (cnt == size) %}
+                    </ul>
+                    </div>
+                {% endif %}
+                {% set cnt = cnt + 1 %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

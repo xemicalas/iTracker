@@ -1,0 +1,23 @@
+{% extends 'KTUAdminBundle::base.html.twig' %}
+
+{% block heading %}
+    <div class="panel-heading"><h3>User ({{ entity.username }})</h3></div>
+{% endblock %}
+
+{% block body -%}
+    <div class="well">
+        <ul class="stats">
+            <li><a href="{{ path('users') }}">Back to the list</a></li>
+            <li><a href="{{ path('users_edit', { 'id': entity.id }) }}">Edit</a></li>
+            <li class="list-form">{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+    <div class="line dark"></div>
+    <ul class="stats counter-stat">
+        <li><span class="desc">Username</span><span class="pull-right">{{ entity.username }}</span></li>
+        <li><span class="desc">Email</span> <span class="pull-right">{{ entity.email }}</span></li>
+        <li><span class="desc">Roles</span> <span class="pull-right">{{ entity.roles[0] }}</span></li>
+        <li><span class="desc">Enabled</span> <span class="pull-right">{{ entity.enabled }}</span></li>
+        <li><span class="desc">Locket</span> <span class="pull-right">{{ entity.locked }}</span></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,66 @@
+<?php
+
+namespace KTU\CountersBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Counters
+ *
+ * @ORM\Table(name="counters", uniqueConstraints={@ORM\UniqueConstraint(name="url_UNIQUE", columns={"url"})}, indexes={@ORM\Index(name="fk_counters_users_idx", columns={"user_id"}), @ORM\Index(name="fk_counters_categories1_idx", columns={"cat_id"})})
+ * @ORM\Entity
+ */
+class Counters
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=45, nullable=false)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="counterDesc", type="text", nullable=true)
+     */
+    private $counterdesc;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \KTU\CountersBundle\Entity\Categories
+     *
+     * @ORM\ManyToOne(targetEntity="KTU\CountersBundle\Entity\Categories")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     * })
+     */
+    private $cat;
+
+    /**
+     * @var \KTU\CountersBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="KTU\CountersBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}
