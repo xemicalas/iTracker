@@ -175,13 +175,12 @@ class CounterController extends Controller
 
     /**
      * Kontroliuoja skaitliuko trynimą
-     * @param Request $request
      * @param Counters $counter
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function deleteCounterAction(Request $request, Counters $counter)
+    public function deleteCounterAction(Counters $counter)
     {
         if (!$this->get('security.context')->isGranted(new Expression('"ROLE_USER" in roles'))) {
             throw new AccessDeniedException();

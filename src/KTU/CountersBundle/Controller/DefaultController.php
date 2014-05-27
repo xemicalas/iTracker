@@ -17,10 +17,9 @@ class DefaultController extends Controller
 {
     /**
      * Atvaizduojamas pagrindinis puslapis. Jame atvaizduojami yra TOP skaitliukai ir visos kategorijos.
-     * @param Request $request
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $manager = $this->getDoctrine()->getManager();
         $topPages = $this->container->getParameter('ktu_counters.top_pages');

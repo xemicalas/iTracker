@@ -16,12 +16,11 @@ class CategoryController extends Controller
 {
     /**
      * Atvaizduoja skaitliukų įrašus pagal tam tikrą kategoriją
-     * @param Request $request
      * @param Categories $category Categories klasės objektas
      * @param $page int Dabartinis puslapis
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showCategoryAction(Request $request, Categories $category, $page)
+    public function showCategoryAction(Categories $category, $page)
     {
         $manager = $this->getDoctrine()->getManager();
         $recordsInPage = $this->container->getParameter('ktu_counters.page_size');
