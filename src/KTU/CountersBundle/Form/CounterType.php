@@ -2,7 +2,6 @@
 
 namespace KTU\CountersBundle\Form;
 
-use KTU\CountersBundle\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
