@@ -9,6 +9,39 @@ class CounterStatisticsModel
 {
 
     /**
+     * Generates full statistics array
+     * @param array $stats
+     * @param $days
+     * @return array
+     */
+    private static function generateStatsArray(array $stats, $days) {
+        $todays = new \DateTime('now');
+        $newStats = array();
+        $found = false;
+
+        for ($i = 0; $i < $days; $i++) {
+            $loopDate = clone $todays;
+            $loopDate->sub(new \DateInterval('P'.$i.'D'));
+            foreach ($stats as $stat) {
+                if ($stat['date']->format('Y-m-d') == $loopDate->format('Y-m-d')) {
+                    $newStats[] = $stat;
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                $newStats[] = array(
+                    'date' => $loopDate,
+                    'total' => 0,
+                    'uniq' => 0
+                );
+            }
+            $found = false;
+        }
+        return $newStats;
+    }
+
+    /**
      * Gets unique and total numbers of visitors
      * @param EntityManager $manager
      * @return mixed
@@ -62,7 +95,8 @@ class CounterStatisticsModel
             ->orderBy('stats.date', 'DESC')
             ->setParameters(array('id' => $counterId, 'interval' => ($days + 1)))
             ->getQuery();
-        $stats = $query->getResult();
+        $stats = $query->getArrayResult();
+        $stats = self::generateStatsArray($stats, abs($days));
 
         return $stats;
     }

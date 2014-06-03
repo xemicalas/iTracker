@@ -34,7 +34,7 @@ class CounterController extends Controller
         $category = CategoriesModel::getCategoryById($manager, $counter->getCat());
 
         // Gauną skaitliuko paskutinių 10 dienų statistiką
-        $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -10);
+        $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -14);
 
         // Gauna absoliučius skaitliuko statistinius duomenis
         $totals = CounterStatisticsModel::getTotalStatsByCountersId($manager, $counter->getId());
