@@ -4,6 +4,11 @@
 
 @main-dark: #c2c2c2;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 #header {
   margin-top: 80px;
 }
@@ -48,6 +53,22 @@
 }
 
 #counter-footer {
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: @component-active-color;
+  background-color: @brand-primary;
+}
+
+#footer-body {
+   padding: 5px;
+}
+
+.wrap {
+  margin-bottom: 60px;
 }
 
 .modal-backdrop {
