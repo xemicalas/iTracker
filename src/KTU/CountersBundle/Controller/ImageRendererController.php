@@ -42,7 +42,7 @@ class ImageRendererController extends Controller
         $stats_total = CounterStatisticsModel::getTotalStatsByCountersId($manager, $counter->getId());
         $stats_today = CounterStatisticsModel::getCountersVisitorsStatisticsByDate(
             $manager, $counter->getId(), date('Y-m-d'));
-        $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -7);
+        $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -14);
 
         // Sukuriamas paveiksliukas
         $image = new CounterImageRenderer(88, 31, $stats_today['total'], $stats_total['total']);
