@@ -42,7 +42,7 @@ class DefaultController extends Controller
      */
     public function changeLocaleAction(Request $request, $locale)
     {
-        $locales = array('en', 'lt');
+        $locales = $this->container->getParameter('ktu_counters.languages');
         if (in_array($locale, $locales)) {
             $response = new Response();
             $response->headers->setCookie(new Cookie('locale', $locale));
