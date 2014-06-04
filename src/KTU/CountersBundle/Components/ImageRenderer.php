@@ -11,7 +11,7 @@ class ImageRenderer implements ImageRendererInterface
 {
     /**
      * Paveiksliuko objektas
-     * @var object
+     * @var resource
      */
     protected $image;
 
