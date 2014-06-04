@@ -2,12 +2,12 @@
 
 namespace KTU\CountersBundle\Controller;
 
+use KTU\CountersBundle\Components\Locale;
 use KTU\CountersBundle\Model\CategoriesModel;
 use KTU\CountersBundle\Model\CountersModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Cookie;
 
 /**
  * Class DefaultController. Homepage kontroleris.
@@ -43,11 +43,9 @@ class DefaultController extends Controller
     public function changeLocaleAction(Request $request, $locale)
     {
         $locales = $this->container->getParameter('ktu_counters.languages');
+        $locator = new Locale($request);
         if (in_array($locale, $locales)) {
-            $response = new Response();
-            $response->headers->setCookie(new Cookie('locale', $locale));
-            $response->send();
-            $request->setLocale($locale);
+            $locator->setCookieLocale($locale);
         }
         $url = $this->generateUrl('ktu_counters_homepage');
         return $this->redirect($url);
