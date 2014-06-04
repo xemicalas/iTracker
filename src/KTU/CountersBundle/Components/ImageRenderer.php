@@ -11,34 +11,38 @@ class ImageRenderer implements ImageRendererInterface
 {
     /**
      * Paveiksliuko objektas
-     * @var obj
+     * @var object
      */
     protected $image;
 
     /**
      * Nustatymų masyvas. Naudojamas paveiksliuko nustatymams saugoti
-     * @var
+     * @var array
      */
     protected $options;
 
     /**
      * Paveiksliuko plotis
-     * @var
+     * @var int
      */
     protected $width;
 
     /**
      * Paveiksliuko aukštis
-     * @var
+     * @var int
      */
     protected $height;
 
     /**
      * Paveiksliuko buferis, į jį surašomas paveiksliuko bitų srautas (Bitmap)
-     * @var
+     * @var array
      */
     protected $imageString;
 
+    /**
+     * @param $width int Image width
+     * @param $height int Image height
+     */
     public function __construct($width, $height)
     {
         $this->width = $width;
@@ -69,10 +73,10 @@ class ImageRenderer implements ImageRendererInterface
      * Piešia grafika ant paveiksliuko. Priklausomai nuo pradžios ir pabaigos koordinačių, gali būti
      * piešiami pikseliai, linijos arba stačiakampiai
      * @param Color $color Spalvos objektas
-     * @param $x Pradžios X koordinatė
-     * @param $y Pradžios Y koordinatė
-     * @param $endX Pabaigos X koordinatė
-     * @param $endY Pabaigos Y koordinatė
+     * @param $x int Pradžios X koordinatė
+     * @param $y int Pradžios Y koordinatė
+     * @param $endX int Pabaigos X koordinatė
+     * @param $endY int Pabaigos Y koordinatė
      */
     private function draw(Color $color, $x, $y, $endX, $endY)
     {
@@ -176,8 +180,8 @@ class ImageRenderer implements ImageRendererInterface
 
     /**
      * Nustato parinkimą į nustatymų masyvą.
-     * @param $option Parinkimo indekso raktas
-     * @param $value Parinkimo norima reikšmė
+     * @param $option mixed Parinkimo indekso raktas
+     * @param $value mixed Parinkimo norima reikšmė
      * @throws \OutOfBoundsException
      */
     public function setOption($option, $value)
@@ -190,7 +194,7 @@ class ImageRenderer implements ImageRendererInterface
 
     /**
      * Grąžina pasirinktą nustatymo reikšmę
-     * @param $option Pasirinkimo indekso raktas
+     * @param $option mixed Pasirinkimo indekso raktas
      * @return mixed
      */
     public function getOption($option)

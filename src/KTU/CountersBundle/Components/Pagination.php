@@ -28,7 +28,7 @@ class Pagination
     private $recordsInPage;
 
     /**
-     * Url to page.
+     * URL to page.
      * @var string
      */
     private $url;
@@ -39,6 +39,12 @@ class Pagination
      */
     private $buffer;
 
+    /**
+     * @param $currentPage int Current page
+     * @param $records int Total number of records
+     * @param $recordsInPage int Number of records in one page
+     * @param $url string URL to page
+     */
     public function __construct($currentPage, $records, $recordsInPage, $url)
     {
         $this->currentPage = (int)$currentPage;

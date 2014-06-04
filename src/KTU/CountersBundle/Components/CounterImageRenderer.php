@@ -35,6 +35,12 @@ class CounterImageRenderer extends ImageRenderer
      */
     private $statistics;
 
+    /**
+     * @param $width int Image width
+     * @param $height int Image height
+     * @param $todayNumber int Todays number
+     * @param $totalNumber int Total number
+     */
     public function __construct($width, $height, $todayNumber, $totalNumber)
     {
         parent::__construct($width, $height);
