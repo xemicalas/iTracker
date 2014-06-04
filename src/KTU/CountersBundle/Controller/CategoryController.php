@@ -6,7 +6,6 @@ use KTU\CountersBundle\Components\Pagination;
 use KTU\CountersBundle\Entity\Categories;
 use KTU\CountersBundle\Model\CountersModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class CategoryController. Kategorijų kontroleris, kuris atvaizduoja kategorijos turinį.

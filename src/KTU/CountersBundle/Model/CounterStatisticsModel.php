@@ -3,7 +3,6 @@
 namespace KTU\CountersBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class CounterStatisticsModel
 {

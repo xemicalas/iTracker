@@ -3,7 +3,6 @@
 namespace KTU\CountersBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use KTU\CountersBundle\Entity\Categories;
 
 class CategoriesModel
 {
