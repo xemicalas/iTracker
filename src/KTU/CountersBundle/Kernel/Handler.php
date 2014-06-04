@@ -3,6 +3,7 @@
 namespace KTU\CountersBundle\Kernel;
 
 use Doctrine\ORM\EntityManager;
+use KTU\CountersBundle\Components\Locale;
 use KTU\CountersBundle\Model\CategoriesModel;
 use KTU\CountersBundle\Model\CountersModel;
 use KTU\CountersBundle\Model\CounterStatisticsModel;
@@ -12,8 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class Handler. Handler'is, kuris yra vykdomas prieš kiekvieną kontrolerio vykdymą.
- * Užkrauna globalius kintamuosius į Twig. Atvaizduoja detales būdingas kiekvienam puslapiui.
+ * Class Handler provides functionality when it needs to be executed before every controller
+ * Loads global variables to Twig.
  * @package KTU\CountersBundle\Kernel
  */
 class Handler extends ContainerAware
@@ -35,11 +36,15 @@ class Handler extends ContainerAware
     private $request;
 
     /**
-     * Twig objektas
+     * Twig object
      * @var object
      */
     private $twig;
 
+    /**
+     * @param ContainerInterface $container
+     * @param Request $request
+     */
     public function __construct(ContainerInterface $container, Request $request)
     {
         $this->container = $container;
@@ -49,17 +54,17 @@ class Handler extends ContainerAware
     }
 
     /**
-     * Nustato dabartinę kalbą pagal cookie esančią locale reikšmę.
+     * Sets current locale according to cookies data, if cookies are empty, gets the user's GEO locale
      */
     public function setLocale()
     {
-        if (($locale = $this->request->cookies->get('locale')) != null) {
-            $this->request->setLocale($locale);
-        }
+        $locales = $this->container->getParameter('ktu_counters.languages');
+        $locator = new Locale($this->request);
+        $locator->setGlobLocale($locales);
     }
 
     /**
-     * Užkrauna globalius kintamuosius į twig
+     * Loads global variables to Twig
      */
     public function setGlobals()
     {
@@ -80,7 +85,7 @@ class Handler extends ContainerAware
     }
 
     /**
-     * Gauna kategorijų duomenis ir įrašo į twig globaliai
+     * Gets category date and writes to twig globally
      */
     public function renderCategories()
     {
@@ -89,7 +94,7 @@ class Handler extends ContainerAware
     }
 
     /**
-     * Vykdomi veiksmai prieš kontrolerio užkrovimą
+     * Executes before a controller was loaded
      */
     public function preRender()
     {
