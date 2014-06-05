@@ -133,3 +133,7 @@ profile:
         alerts:
             no_counters: Šiuo metu neturite sukūrę jokių skaitliukų,
             create: kurti naują skaitliuką.
+tops:
+    view:
+        title: Topai
+        header: Šiandienos TOP 100 svetainės

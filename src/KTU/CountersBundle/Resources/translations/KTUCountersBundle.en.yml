@@ -133,4 +133,8 @@ profile:
         alerts:
             no_counters: You currently don't have any created counters,
             create: create new counter.
+tops:
+    view:
+        title: Tops
+        header: Todays TOP 100 pages
 
