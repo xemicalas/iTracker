@@ -112,7 +112,7 @@ counter:
             text: Svetainės statistika
             alert: Šiuo metu nėra jokių duomenų apie šią svetainę.
             date: Data
-            unique: Unikalūs
+            unique: Unikalūs lankytojai
             hits: Paspaudimai
 profile:
     edit:
