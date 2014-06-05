@@ -1,4 +1,5 @@
 {% extends 'KTUCountersBundle::base.html.twig' %}
+{% trans_default_domain 'KTUCountersBundle' %}
 
 {% block title %}
 {{ parent() }} - {{ cat.category }}
@@ -13,9 +14,9 @@
         <table class="table">
             <tr>
                 <th>#</th>
-                <th>Page</th>
-                <th>Unique</th>
-                <th>Hits</th>
+                <th>{{ 'global.page'|trans }}</th>
+                <th>{{ 'global.unique'|trans }}</th>
+                <th>{{ 'global.hits'|trans }}</th>
                 <th style="width: 50px"></th>
             </tr>
             {% for counter in counters %}
@@ -26,7 +27,7 @@
                     <td>{{ counter.counter_all|number_format }}</td>
                     <td><a href="{{ path('ktu_counters_show_counter', {'id': counter.id}) }}">
                             <span class="glyphicon glyphicon-stats tooltip-text" data-toggle="tooltip"
-                                  data-placement="right" title="Statistics"></span></a></td>
+                                  data-placement="right" title="{{ 'global.statistics'|trans }}"></span></a></td>
                 </tr>
             {% endfor %}
         </table>
@@ -37,7 +38,7 @@
         {% endif %}
     {% else %}
         <div class="alert alert-warning">
-            There are no counters in this category.
+            {{ 'category.view.alerts.no_counters'|trans }}
         </div>
     {% endif %}
 {% endblock %}

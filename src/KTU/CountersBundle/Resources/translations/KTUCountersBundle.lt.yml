@@ -1,0 +1,74 @@
+global:
+    page: Puslapis
+    unique: Unikalūs lankytojai
+    hits: Paspaudimai
+    statistics: Statistika
+base:
+    header:
+        motto: %project_name% - Statistinių skaitliukų registracija
+        description: Vartotojų sekimo sistema jūsų svetainei
+    nav: Perjungti navigaciją
+    sign_in:
+        text: Prisijungimas
+        username: Vartotojo vardas
+        password: Slaptažodis
+        forgot: Pamiršai slaptažodį?
+        remember: Prisiminti mane
+        submit: Prisijungti
+    sign_up: Registracija
+    profile:
+        counters:
+            text: Skaitliukai
+            create: Kurti skaitliuką
+            view: Mano skaitliukai
+        text: Profilis
+        edit: Redaguoti profilį
+        logout: Atsijungti
+    admin:
+        text: Administratoriaus CP
+        categories: Kategorijos
+        counters: Skaitliukai
+        users: Vartotojai
+    main_page: Pagrindinis
+    categories: Kategorijos
+    tops: Top svetainės
+    stats:
+        unique: Šiandienos unikalūs
+        hits: Šiandienos paspaudimai
+        total_hits: Išviso paspaudimų
+        total_unique: Išviso lankytojų
+        counters_registered: Užregistruota puslapių
+        users_registered: Užregistruota vartotojų
+    footer:
+        copyright: %copyright_year% %project_name%, Visos teisės saugomos
+home:
+    view:
+        heading: Pagrindinis
+        top_pages: Šiandienos TOP puslapiai
+        categories: Kategorijos
+category:
+    view:
+        alerts:
+            no_counters: Šioje kategorijoje nėra skaitliukų.
+counter:
+    create:
+        title: Kurti skaitliuką
+        header: Kurti skaitliuką
+        alerts:
+            created: Jūsų svetainės skaitliukas sėkmingai sukurtas.
+            text_first: Norint pradėti sekti savo svetainės lankytojus, jums tereikia įsidėti savo svetainės skaitliuko paveiksliuką į savo svetainę. Štai jūsų svetainės skaitliuko paveikslėlio HTML kodas:
+            text_second: Jūsų svetainės skaitliukas turėtų atrodyti šitaip:
+            text_third: Įsidėjus skaitliuką, mes sėkmingai galėsime sekti jūsų svetainės lankytojų srautą.
+            text_fourth: Taip pat nepamirškite, kad galite
+            modify: keisti
+            text_fifth: profilyje savo skaitliuko dizainą
+        form:
+            category: Kategorija
+            name: Skaitliuko pavadinimas
+            url: Skaitliuko URL adresas
+            description: Skaitliuko aprašymas
+            submit: Kurti
+            alerts:
+                limit: Jūs pasiekėte skaitliukų limitą.
+                exists: Pasirinkta kategorija neegiztuoja.
+                url_format: Blogas URl adreso formatas.

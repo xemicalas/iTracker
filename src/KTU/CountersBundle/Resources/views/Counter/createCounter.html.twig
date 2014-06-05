@@ -1,12 +1,13 @@
 {% extends 'KTUCountersBundle::base.html.twig' %}
+{% trans_default_domain 'KTUCountersBundle' %}
 {% form_theme form 'KTUCountersBundle:Form:form.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - Create counter
+    {{ parent() }} - {{ 'counter.create.title'|trans }}
 {% endblock %}
 
 {% block heading %}
-    <div class="panel-heading"><h3>Create counter</h3></div>
+    <div class="panel-heading"><h3>{{ 'counter.create.header'|trans }}</h3></div>
 {% endblock %}
 
 {% block body %}
@@ -25,15 +26,15 @@
         {{ form_end(form) }}
     {% else %}
         <div class="alert alert-success">
-            Your counter has been successfully created.
+            {{ 'counter.create.alerts.created'|trans }}
         </div>
-        In order to start tracking your website, you need to put your counter's image on your website.
-        Here's a HTML code of your counter's image:
+        {{ 'counter.create.alerts.text_first'|trans }}
         <pre class="code-section">{{ portable_image_url|format(counter.id, counter.id) }}</pre>
-        Your counter's image should look like:<br/>
+        {{ 'counter.create.alerts.text_second'|trans }}<br/>
         {{ portable_image_url|format(counter.id, counter.id)|raw }}<br/>
-        After you place the image, we'll be able to track successfully your websites traffic.<br/>
-        Also don't forget that you can
-        <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id}) }}">modify</a> you counter's styling in your profile.
+        {{ 'counter.create.alerts.text_third'|trans }}<br/>
+        {{ 'counter.create.alerts.text_fourth'|trans }}
+        <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id}) }}">
+            {{ 'counter.create.alerts.modify'|trans }}</a> {{ 'counter.create.alerts.text_fifth'|trans }}
     {% endif %}
 {% endblock %}

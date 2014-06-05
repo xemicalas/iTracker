@@ -1,0 +1,74 @@
+global:
+    page: Page
+    unique: Unique visitors
+    hits: Hits
+    statistics: Statistics
+base:
+    header:
+        motto: %project_name% - Counters registry
+        description: User tracking system for your website
+    nav: Toggle navigation
+    sign_in:
+        text: Sign in
+        username: Username
+        password: Password
+        forgot: Forgot password?
+        remember: Remember me
+        submit: Sign in
+    sign_up: Sign up
+    profile:
+        counters:
+            text: Counters
+            create: Create counter
+            view: My counters
+        text: Profile
+        edit: Edit profile
+        logout: Logout
+    admin:
+        text: Admin CP
+        categories: Categories
+        counters: Counters
+        users: Users
+    main_page: Main page
+    categories: Categories
+    tops: Top pages
+    stats:
+        unique: Unique visitors today
+        hits: Number of clicks today
+        total_hits: Total clicks
+        total_unique: Total visitors
+        counters_registered: Pages registered
+        users_registered: Users registered
+    footer:
+        copyright: %copyright_year% %project_name%, All rights reserved
+home:
+    view:
+        heading: Main page
+        top_pages: Todays TOP pages
+        categories: Categories
+category:
+    view:
+        alerts:
+            no_counters: There are no counters in this category.
+counter:
+    create:
+        title: Create counter
+        header: Create counter
+        alerts:
+            created: Your counter has been successfully created.
+            text_first: In order to start tracking your website, you need to put your counter's image on your website. Here's a HTML code of your counter's image:
+            text_second: Your counter's image should look like:
+            text_third: After you place the image, we'll be able to track successfully your websites traffic.
+            text_fourth: Also don't forget that you can
+            modify: modify
+            text_fifth: you counter's styling in your profile.
+        form:
+            category: Category
+            name: Counter name
+            url: Counter URL
+            description: Counter description
+            submit: Create
+            alerts:
+                limit: You have reached your maximum counters limit.
+                exists: Selected category doesn't exists.
+                url_format: Invalid URL format.

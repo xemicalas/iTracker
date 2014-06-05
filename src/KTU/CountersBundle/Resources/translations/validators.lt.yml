@@ -1,0 +1,56 @@
+counters:
+    constraints:
+        message: Šis URL jau egzistuoja.
+    cat:
+        not_blank:
+            message: Nepasirinkta kategorija.
+    name:
+        not_blank:
+            message: Neįvestas skaitliuko pavadinimas
+        length:
+            message: Per ilgas skaitliuko pavadinimas. Daugiausiai galima įvesti simbolių: {{ limit }}.
+    url:
+        not_blank:
+            message: Neįvestas skaitliuko URl adresas.
+        length:
+            message: Per ilgas skaitliuko URL adresas. Daugiausiai galima įvesti simbolių: {{ limit }}.
+        regex:
+            message: Skaitliuko URL adresas turi būti be http://
+    counterdesc:
+        not_blank:
+            message: Neįvestas skaitliuko aprašymas.
+    backgroundColor:
+        not_blank:
+            message: Neįvesta fono spalva.
+        regex:
+            message: Blogas fono spalvos formatas.
+    borderColor:
+        not_blank:
+            message: Neįvesta kraštinių spalva.
+        regex:
+            message: Blogas kraštinių spalvos formatas.
+    textColor:
+        not_blank:
+            message: Neįvesta teksto spalva
+        regex:
+            message: Blogas teksto spalvos formatas.
+    uniqueColor:
+        not_blank:
+            message: Neįvesta unikalių lankytojų teksto spalva.
+        regex:
+            message: Blogas unikalių lankytojų teksto spalvos formatas.
+    totalColor:
+        not_blank:
+            message: Neįvesta visų paspaudimų teksto spalva.
+        regex:
+            message: Blogas visų paspaudimų teksto spalvos formatas.
+    barTotalColor:
+        not_blank:
+            message: Neįvesta statistinio stulpelio visų paspaudimų spalva.
+        regex:
+            message: Blogas statistinio stulpelio visų paspaudimų spalvos formatas.
+    barUniqueColor:
+        not_blank:
+            message: Neįvesta statistinio stulpelio unikalių lankytojų spalva.
+        regex:
+            message: Invalid statistinio stulpelio unikalių lankytojų spalvos formatas.

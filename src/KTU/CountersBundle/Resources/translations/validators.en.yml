@@ -1,0 +1,56 @@
+counters:
+    constraints:
+        message: This URL already exists.
+    cat:
+        not_blank:
+            message: Category must not be empty.
+    name:
+        not_blank:
+            message: Counters name is empty.
+        length:
+            message: Countes name is too long. Max {{ limit }} characters allowed.
+    url:
+        not_blank:
+            message: URL is empty.
+        length:
+            message: URL is too long. Max {{ limit }} characters allowed.
+        regex:
+            message: URL should be without http://
+    counterdesc:
+        not_blank:
+            message: Counter description is empty.
+    backgroundColor:
+        not_blank:
+            message: Background color is empty.
+        regex:
+            message: Invalid backgound color format.
+    borderColor:
+        not_blank:
+            message: Border color is empty.
+        regex:
+            message: Invalid border's color format.
+    textColor:
+        not_blank:
+            message: Text color is empty.
+        regex:
+            message: Invalid text color format.
+    uniqueColor:
+        not_blank:
+            message: Unique color is empty.
+        regex:
+            message: Invalid unique text color format.
+    totalColor:
+        not_blank:
+            message: Total color is empty.
+        regex:
+            message: Invalid total text color format.
+    barTotalColor:
+        not_blank:
+            message: Bar total color is empty.
+        regex:
+            message: Invalid strip's total background color format.
+    barUniqueColor:
+        not_blank:
+            message: Bar unique color is empty.
+        regex:
+            message: Invalid strip's unique background color format.

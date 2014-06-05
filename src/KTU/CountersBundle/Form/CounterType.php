@@ -10,20 +10,22 @@ class CounterType extends AbstractType
 {
     private $submitText;
     private $validationGroups;
+    private $translationDomain;
 
-    public function __construct($submitText, $validationGroups)
+    public function __construct($submitText, $validationGroups, $translationDomain)
     {
         $this->submitText = $submitText;
         $this->validationGroups = $validationGroups;
+        $this->translationDomain = $translationDomain;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cat', null, array('label' => 'Category'))
-            ->add('name', 'text', array('label' => 'Counter name'))
-            ->add('url', 'text', array('label' => 'Counter URL'))
-            ->add('counterDesc', 'textarea', array('label' => 'Counter description'))
+            ->add('cat', null, array('label' => 'counter.create.form.category'))
+            ->add('name', 'text', array('label' => 'counter.create.form.name'))
+            ->add('url', 'text', array('label' => 'counter.create.form.url'))
+            ->add('counterDesc', 'textarea', array('label' => 'counter.create.form.description'))
             ->add('create', 'submit', array('label' => $this->submitText));
     }
 
@@ -31,7 +33,8 @@ class CounterType extends AbstractType
     {
         $resolver->setDefaults(array(
             'validation_groups' => $this->validationGroups,
-            'data_class' => 'KTU\CountersBundle\Entity\Counters'
+            'data_class' => 'KTU\CountersBundle\Entity\Counters',
+            'translation_domain' => $this->translationDomain
         ));
     }
 

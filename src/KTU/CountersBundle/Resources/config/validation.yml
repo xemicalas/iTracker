@@ -2,91 +2,98 @@ KTU\CountersBundle\Entity\Counters:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: [url]
-            message: 'This URL already exists.'
+            message: counters.constraints.message
             groups: [create]
     properties:
         cat:
             - NotBlank:
-                message: 'Category must not be empty.'
+                message: counters.cat.not_blank.message
                 groups: [create,edit]
         name:
             - NotBlank:
-                message: 'Counters name is empty.'
+                message: counters.name.not_blank.message
                 groups: [create,edit]
             - Length:
                 max: 100
-                maxMessage: 'Countes name is too long. Max {{ limit }} characters allowed.'
+                maxMessage: counters.name.length.message
                 groups: [create,edit]
         url:
             - Notblank:
-                message: 'URL is empty.'
+                message: counters.url.not_blank.message
                 groups: [create,edit]
             - Length:
                 max: 45
-                maxMessage: 'URL is too long. Max {{ limit }} characters allowed.'
+                maxMessage: counters.url.length.message
                 groups: [create,edit]
             - Regex:
                 pattern: '/^https?:\/\//'
                 match: false
-                message: 'URL should be without http://'
+                message: counters.url.regex.message
                 groups: [create,edit]
         counterdesc:
             - Notblank:
-                message: 'Counter description is empty.'
+                message: counters.counterdesc.not_blank.message
                 groups: [create,edit]
         backgroundColor:
             - Notblank:
+                message: counters.backgroundColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid backgound color format.'
+                message: counters.backgroundColor.regex.message
                 groups: [editColors]
         borderColor:
             - Notblank:
+                message: counters.borderColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid border color format.'
+                message: counters.borderColor.regex.message
                 groups: [editColors]
         textColor:
             - Notblank:
+                message: counters.textColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid text color format.'
+                message: counters.textColor.regex.message
                 groups: [editColors]
         uniqueColor:
             - Notblank:
+                message: counters.uniqueColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid unique text color format.'
+                message: counters.uniqueColor.regex.message
                 groups: [editColors]
         totalColor:
             - Notblank:
+                message: counters.totalColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid total text color format.'
+                message: counters.totalColor.regex.message
                 groups: [editColors]
         barTotalColor:
             - Notblank:
+                message: counters.barTotalColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid strips total background color format.'
+                message: counters.barTotalColor.regex.message
                 groups: [editColors]
         barUniqueColor:
             - Notblank:
+                message: counters.barUniqueColor.not_blank.message
                 groups: [editColors]
             - Regex:
                 pattern: '/^#[A-Fa-f0-9]{6}$/'
                 match: true
-                message: 'Invalid strips unique background color format.'
+                message: counters.barUniqueColor.regex.message
                 groups: [editColors]

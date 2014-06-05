@@ -62,7 +62,9 @@ class CounterController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
         $counter = new Counters();
-        $form = $this->createForm(new CounterType('Create', 'create'), $counter);
+        $translator = $this->container->get('translator');
+        $createText = $translator->trans('counter.create.form.submit');
+        $form = $this->createForm(new CounterType($createText, 'create', 'KTUCountersBundle'), $counter);
 
         // Jei forma buvo patvirtinta
         if ($request->getMethod() == 'POST') {
@@ -73,14 +75,17 @@ class CounterController extends Controller
             $cat = CategoriesModel::getCategoryById($manager, $data->getCat());
 
             if (count($counters) >= 5) {
-                $form->addError(new FormError('You have reached your maximum counters limit.'));
+                $form->addError(new FormError(
+                    $translator->trans('counter.create.form.alerts.limit', array(), 'KTUCountersBundle')));
             }
             if ($cat == null) {
-                $form->addError(new FormError('Selected category doesn\'t exists.'));
+                $form->addError(new FormError(
+                    $translator->trans('counter.create.form.alerts.exists', array(), 'KTUCountersBundle')));
             }
             // Patikrinama ar teisingas skaitliuko URL adreso formatas
             if (!preg_match('/^(www\.)?([A-Za-z0-9-]+\.)+\w{2,4}/i', $data->getUrl())) {
-                $form->addError(new FormError('Invalid URL format.'));
+                $form->addError(new FormError(
+                    $translator->trans('counter.create.form.alerts.url_format', array(), 'KTUCountersBundle')));
             }
 
             // Jei patvirtinta forma yra teisinga, tuomet kuriamas skaitliukas
@@ -129,10 +134,12 @@ class CounterController extends Controller
         $isEdited = false;
         $manager = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
+        $translator = $this->container->get('translator');
 
         // Leidžiama redaguoti tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
-            $form = $this->createForm(new CounterType('Edit', 'edit'), $counter);
+            $editText = $translator->trans('counter.edit.form.submit');
+            $form = $this->createForm(new CounterType($editText, 'edit', 'KTUCountersBundle'), $counter);
 
             // Jei forma buvo patvirtinta
             if ($request->getMethod() == 'POST') {
