@@ -68,6 +68,8 @@ class Handler extends ContainerAware
      */
     public function setGlobals()
     {
+        $projectName = $this->container->getParameter('project_name');
+        $copyrightYear = $this->container->getParameter('copyright_year');
         $pages = $this->container->getParameter('ktu_counters.page_size');
         $image_url = $this->container->getParameter('ktu_counters.portable_image_url');
 
@@ -76,6 +78,8 @@ class Handler extends ContainerAware
         $countersTotal = CountersModel::getTotalNumberOfCounters($this->manager);
         $usersTotal = UsersModel::getTotalNumberOfUsers($this->manager);
 
+        $this->twig->addGlobal('project_name', $projectName);
+        $this->twig->addGlobal('copyright_year', $copyrightYear);
         $this->twig->addGlobal('page_size', $pages);
         $this->twig->addGlobal('portable_image_url', $image_url);
         $this->twig->addGlobal('counter_stats_today', $statsToday);

@@ -1,4 +1,6 @@
 parameters:
+    project_name: iTracker
+    copyright_year: 2014
     ktu_counters.languages: [en, lt_LT]
     ktu_counters.index_page: 'marmis2.stud.if.ktu.lt/symfony/web'
     ktu_counters.page_size: 20

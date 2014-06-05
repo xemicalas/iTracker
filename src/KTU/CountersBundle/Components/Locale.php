@@ -61,7 +61,7 @@ class Locale
     }
 
     /**
-     * Analyzes and corrects locale code
+     * Analyzes and corrects the locale code
      * @param $locale string Locale
      * @return string
      */
