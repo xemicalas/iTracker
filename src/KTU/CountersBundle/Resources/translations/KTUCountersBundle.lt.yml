@@ -3,6 +3,14 @@ global:
     unique: Unikalūs lankytojai
     hits: Paspaudimai
     statistics: Statistika
+    date: Data
+    counter:
+        text_first: Norint pradėti sekti savo svetainės lankytojus, jums tereikia įsidėti savo svetainės skaitliuko paveiksliuką į savo svetainę. Štai jūsų svetainės skaitliuko paveikslėlio HTML kodas:
+        text_second: Jūsų svetainės skaitliukas turėtų atrodyti šitaip:
+        text_third: Įsidėjus skaitliuką, mes sėkmingai galėsime sekti jūsų svetainės lankytojų srautą.
+        text_fourth: Taip pat nepamirškite, kad galite
+        modify: keisti
+        text_fifth: profilyje savo skaitliuko dizainą
 base:
     header:
         motto: %project_name% - Statistinių skaitliukų registracija
@@ -61,12 +69,6 @@ counter:
         header: Skaitliuko kūrimas
         alerts:
             created: Jūsų svetainės skaitliukas sėkmingai sukurtas.
-            text_first: Norint pradėti sekti savo svetainės lankytojus, jums tereikia įsidėti savo svetainės skaitliuko paveiksliuką į savo svetainę. Štai jūsų svetainės skaitliuko paveikslėlio HTML kodas:
-            text_second: Jūsų svetainės skaitliukas turėtų atrodyti šitaip:
-            text_third: Įsidėjus skaitliuką, mes sėkmingai galėsime sekti jūsų svetainės lankytojų srautą.
-            text_fourth: Taip pat nepamirškite, kad galite
-            modify: keisti
-            text_fifth: profilyje savo skaitliuko dizainą
         form:
             submit: Kurti
             alerts:
@@ -112,3 +114,22 @@ counter:
             date: Data
             unique: Unikalūs
             hits: Paspaudimai
+profile:
+    edit:
+        title: Profilio redagavimas
+        header: Profilio redagavimas
+    show:
+        title: Profilis
+        header: Profilis
+        counters: Mano skaitliukai
+        edit: Redaguoti
+        code: Skaitliuko HTML kodas
+        delete: Trinti skaitliuką
+        close: Uždaryti
+        delete_question: Ar tikrai norite ištrinti šį skaitliuką?
+        delete_description: Ištrinant skaitliuką dings visa puslapio statistika. Po ištrynimo negalėsite stebėti šio puslapio statistikos.
+        delete_confirm: Taip
+        delete_cancel: Atšaukti
+        alerts:
+            no_counters: Šiuo metu neturite sukūrę jokių skaitliukų,
+            create: kurti naują skaitliuką.

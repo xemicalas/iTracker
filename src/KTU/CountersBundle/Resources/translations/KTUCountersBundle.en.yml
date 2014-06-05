@@ -3,6 +3,14 @@ global:
     unique: Unique visitors
     hits: Hits
     statistics: Statistics
+    date: Date
+    counter:
+        text_first: In order to start tracking your website, you need to put your counter's image on your website. Here's a HTML code of your counter's image:
+        text_second: Your counter's image should look like:
+        text_third: After you place the image, we'll be able to track successfully your websites traffic.
+        text_fourth: Also don't forget that you can
+        modify: modify
+        text_fifth: you counter's styling in your profile.
 base:
     header:
         motto: %project_name% - Counters registry
@@ -61,12 +69,6 @@ counter:
         header: Create counter
         alerts:
             created: Your counter has been successfully created.
-            text_first: In order to start tracking your website, you need to put your counter's image on your website. Here's a HTML code of your counter's image:
-            text_second: Your counter's image should look like:
-            text_third: After you place the image, we'll be able to track successfully your websites traffic.
-            text_fourth: Also don't forget that you can
-            modify: modify
-            text_fifth: you counter's styling in your profile.
         form:
             submit: Create
             alerts:
@@ -112,3 +114,23 @@ counter:
             date: Date
             unique: Unique
             hits: Hits
+profile:
+    edit:
+        title: Edit profile
+        header: Edit profile
+    show:
+        title: Profile
+        header: Profile
+        counters: My counters
+        edit: Edit
+        code: Counter's HTML code
+        delete: Delete counter
+        close: Close
+        delete_question: Are you sure want to delete this counter?
+        delete_description: Deleting counter will erase the counter and counters statistics. After that you'll be unable to view this counter.
+        delete_confirm: Yes
+        delete_cancel: Cancel
+        alerts:
+            no_counters: You currently don't have any created counters,
+            create: create new counter.
+

@@ -15,7 +15,8 @@
             <li><span class="desc">{{ 'counter.show.url'|trans }}</span>
                 <span class="pull-right"><a href="http://{{ counter.url }}"
                                             target="_blank">{{ counter.name }}</a></span></li>
-            <li><span class="desc">{{ 'counter.show.category'|trans }}</span> <span class="pull-right">{{ category.category }}</span></li>
+            <li><span class="desc">{{ 'counter.show.category'|trans }}</span> <span class="pull-right">
+                    {{ category.category }}</span></li>
             <li><span class="desc">{{ 'counter.show.total_visitors'|trans }}</span>
                 <span class="pull-right">{{ totals.uniq|number_format }}</span></li>
             <li><span class="desc">{{ 'counter.show.total_hits'|trans }}</span>
@@ -43,7 +44,8 @@
         google.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['{{ 'counter.show.stats.date'|trans }}', '{{ 'counter.show.stats.unique'|trans }}', '{{ 'counter.show.stats.hits'|trans }}'],
+                ['{{ 'counter.show.stats.date'|trans }}', '{{ 'counter.show.stats.unique'|trans }}',
+                    '{{ 'counter.show.stats.hits'|trans }}'],
                 {% for stat in stats %}
                     ['{{ stat.date.date|date('Y-m-d') }}', {{ stat.uniq }}, {{ stat.total }}],
                 {% endfor %}

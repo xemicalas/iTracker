@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 <div class="well">
-    <a href="{{ path('fos_user_change_password') }}">Change password</a>
+    <a href="{{ path('fos_user_change_password') }}">{{ 'change_password.submit'|trans }}</a>
 </div>
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST"
       class="form-horizontal fos_user_profile_edit">

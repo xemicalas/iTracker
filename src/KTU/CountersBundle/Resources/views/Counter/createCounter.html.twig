@@ -28,13 +28,13 @@
         <div class="alert alert-success">
             {{ 'counter.create.alerts.created'|trans }}
         </div>
-        {{ 'counter.create.alerts.text_first'|trans }}
+        {{ 'global.counter.text_first'|trans }}
         <pre class="code-section">{{ portable_image_url|format(counter.id, counter.id) }}</pre>
-        {{ 'counter.create.alerts.text_second'|trans }}<br/>
+        {{ 'global.counter.text_second'|trans }}<br/>
         {{ portable_image_url|format(counter.id, counter.id)|raw }}<br/>
-        {{ 'counter.create.alerts.text_third'|trans }}<br/>
-        {{ 'counter.create.alerts.text_fourth'|trans }}
+        {{ 'global.counter.text_third'|trans }}<br/>
+        {{ 'global.counter.text_fourth'|trans }}
         <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id}) }}">
-            {{ 'counter.create.alerts.modify'|trans }}</a> {{ 'counter.create.alerts.text_fifth'|trans }}
+            {{ 'global.counter.modify'|trans }}</a> {{ 'global.counter.text_fifth'|trans }}
     {% endif %}
 {% endblock %}
