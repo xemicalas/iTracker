@@ -43,6 +43,7 @@ class Locale
     {
         $locator = new GeoLocator($this->request->getClientIp());
         $locale = strtolower($locator->getCountryCode());
+        $locale = $this->analyze($locale);
         if (in_array($locale, $languages)) {
             return $locale;
         }
@@ -57,6 +58,20 @@ class Locale
         $response = new Response();
         $response->headers->setCookie(new Cookie('locale', $locale));
         $response->send();
+    }
+
+    /**
+     * Analyzes and corrects locale code
+     * @param $locale string Locale
+     * @return string
+     */
+    private function analyze($locale) {
+        switch ($locale) {
+            case 'lt':
+                return 'lt_LT';
+            default:
+                return $locale;
+        }
     }
 
     /**

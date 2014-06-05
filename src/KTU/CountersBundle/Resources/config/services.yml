@@ -1,5 +1,5 @@
 parameters:
-    ktu_counters.languages: [en, lt]
+    ktu_counters.languages: [en, lt_LT]
     ktu_counters.index_page: 'marmis2.stud.if.ktu.lt/symfony/web'
     ktu_counters.page_size: 20
     ktu_counters.top_pages: 10
