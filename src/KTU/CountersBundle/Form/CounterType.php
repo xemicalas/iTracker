@@ -22,10 +22,10 @@ class CounterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cat', null, array('label' => 'counter.create.form.category'))
-            ->add('name', 'text', array('label' => 'counter.create.form.name'))
-            ->add('url', 'text', array('label' => 'counter.create.form.url'))
-            ->add('counterDesc', 'textarea', array('label' => 'counter.create.form.description'))
+            ->add('cat', null, array('label' => 'counter.form.category'))
+            ->add('name', 'text', array('label' => 'counter.form.name'))
+            ->add('url', 'text', array('label' => 'counter.form.url'))
+            ->add('counterDesc', 'textarea', array('label' => 'counter.form.description'))
             ->add('create', 'submit', array('label' => $this->submitText));
     }
 

@@ -139,6 +139,7 @@ class CounterController extends Controller
         // Leidžiama redaguoti tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
             $editText = $translator->trans('counter.edit.form.submit');
+            $counterUrl = $counter->getUrl();
             $form = $this->createForm(new CounterType($editText, 'edit', 'KTUCountersBundle'), $counter);
 
             // Jei forma buvo patvirtinta
@@ -149,14 +150,17 @@ class CounterController extends Controller
                 $counterByUrl = CountersModel::getCounterByUrl($manager, $data->getUrl());
 
                 if ($cat == null) {
-                    $form->addError(new FormError('Selected category doesn\'t exists.'));
+                    $form->addError(new FormError(
+                        $translator->trans('counter.edit.form.alerts.exists', array(), 'KTUCountersBundle')));
                 }
-                if ($counterByUrl != null && $counter->getUrl() != $data->getUrl()) {
-                    $form->addError(new FormError('This URL already exists.'));
+                if ($counterByUrl != null && $counterByUrl->getUrl() != $counterUrl) {
+                    $form->addError(new FormError(
+                        $translator->trans('counter.edit.form.alerts.url_exists', array(), 'KTUCountersBundle')));
                 }
                 // Patikrinama ar teisingas skaitliuko URL adreso formatas
                 if (!preg_match('/^(www\.)?([A-Za-z0-9-]+\.)+\w{2,4}/i', $data->getUrl())) {
-                    $form->addError(new FormError('Invalid URL format.'));
+                    $form->addError(new FormError(
+                        $translator->trans('counter.edit.form.alerts.url_format', array(), 'KTUCountersBundle')));
                 }
 
                 // Jei viskas tvarkinga, tuomet atnaujinami skaitliuko duomenys
@@ -231,7 +235,7 @@ class CounterController extends Controller
 
         // Redaguoti leidžiama tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
-            $form = $this->createForm(new CounterColorType('editColors'), $counter);
+            $form = $this->createForm(new CounterColorType('editColors', 'KTUCountersBundle'), $counter);
             if ($request->getMethod() == 'POST') {
                 $form->handleRequest($request);
 

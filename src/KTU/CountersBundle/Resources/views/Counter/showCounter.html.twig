@@ -1,4 +1,5 @@
 {% extends 'KTUCountersBundle::base.html.twig' %}
+{% trans_default_domain 'KTUCountersBundle' %}
 
 {% block title %}
     {{ parent() }} - {{ counter.name }}
@@ -11,26 +12,26 @@
 {% block body %}
     <div class="well">
         <ul class="stats counter-stat">
-            <li><span class="desc">URL</span>
+            <li><span class="desc">{{ 'counter.show.url'|trans }}</span>
                 <span class="pull-right"><a href="http://{{ counter.url }}"
                                             target="_blank">{{ counter.name }}</a></span></li>
-            <li><span class="desc">Category</span> <span class="pull-right">{{ category.category }}</span></li>
-            <li><span class="desc">Total unique visitors</span>
+            <li><span class="desc">{{ 'counter.show.category'|trans }}</span> <span class="pull-right">{{ category.category }}</span></li>
+            <li><span class="desc">{{ 'counter.show.total_visitors'|trans }}</span>
                 <span class="pull-right">{{ totals.uniq|number_format }}</span></li>
-            <li><span class="desc">Total hits</span>
+            <li><span class="desc">{{ 'counter.show.total_hits'|trans }}</span>
                 <span class="pull-right">{{ totals.total|number_format }}</span></li>
-            <li><span class="desc">Description</span></li>
+            <li><span class="desc">{{ 'counter.show.description'|trans }}</span></li>
         </ul>
         <div class="line dark"></div>
         <span class="counter-stat">{{ counter.counterDesc }}</span>
     </div>
-    <h4>Website's statistics</h4>
+    <h4>{{ 'counter.show.stats.text'|trans }}</h4>
     {% if stats|length > 0 %}
         <div class="col-lg-6" id="chart"></div>
         <div class="col-lg-6" id="areaChart"></div>
     {% else %}
         <div class="line"></div>
-        <div class="alert alert-warning">Currently, there are no statistics about this website.</div>
+        <div class="alert alert-warning">{{ 'counter.show.stats.alert'|trans }}</div>
     {% endif %}
 {% endblock %}
 
@@ -42,7 +43,7 @@
         google.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Date', 'Unique', 'Hits'],
+                ['{{ 'counter.show.stats.date'|trans }}', '{{ 'counter.show.stats.unique'|trans }}', '{{ 'counter.show.stats.hits'|trans }}'],
                 {% for stat in stats %}
                     ['{{ stat.date.date|date('Y-m-d') }}', {{ stat.uniq }}, {{ stat.total }}],
                 {% endfor %}

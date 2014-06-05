@@ -51,6 +51,11 @@ category:
         alerts:
             no_counters: There are no counters in this category.
 counter:
+    form:
+        category: Category
+        name: Counter name
+        url: Counter URL
+        description: Counter description
     create:
         title: Create counter
         header: Create counter
@@ -63,12 +68,47 @@ counter:
             modify: modify
             text_fifth: you counter's styling in your profile.
         form:
-            category: Category
-            name: Counter name
-            url: Counter URL
-            description: Counter description
             submit: Create
             alerts:
                 limit: You have reached your maximum counters limit.
                 exists: Selected category doesn't exists.
                 url_format: Invalid URL format.
+    edit:
+        title: Edit counter
+        header: Edit counter
+        change_appearance: Change counter's appearance
+        alerts:
+            edited: Counter's information has been successfully changed.
+        form:
+            submit: Edit
+            alerts:
+                exists: Selected category doesn't exists.
+                url_exists: This URL already exists.
+                url_format: Invalid URL format.
+    editColors:
+        title: Counter's appearance
+        header: Edit counter's appearance
+        alerts:
+            edited: Counter's appearance has been successfully changed.
+        form:
+            backgroundColor: Background color
+            borderColor: Border color
+            textColor: Text color
+            uniqueColor: Unique number's color
+            totalColor: Total number's color
+            barTotalColor: Strip's total background color
+            barUniqueColor: Strip's unique background color
+            transparentBackground: Use transparent background
+            submit: Edit
+    show:
+        url: URL
+        category: Category
+        total_visitors: Total unique visitors
+        total_hits: Total hits
+        description: Description
+        stats:
+            text: Website's statistics
+            alert: Currently, there are no statistics about this website.
+            date: Date
+            unique: Unique
+            hits: Hits

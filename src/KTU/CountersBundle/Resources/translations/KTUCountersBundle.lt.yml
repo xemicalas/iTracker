@@ -51,9 +51,14 @@ category:
         alerts:
             no_counters: Šioje kategorijoje nėra skaitliukų.
 counter:
+    form:
+        category: Kategorija
+        name: Skaitliuko pavadinimas
+        url: Skaitliuko URL adresas
+        description: Skaitliuko aprašymas
     create:
-        title: Kurti skaitliuką
-        header: Kurti skaitliuką
+        title: Skaitliuko kūrimas
+        header: Skaitliuko kūrimas
         alerts:
             created: Jūsų svetainės skaitliukas sėkmingai sukurtas.
             text_first: Norint pradėti sekti savo svetainės lankytojus, jums tereikia įsidėti savo svetainės skaitliuko paveiksliuką į savo svetainę. Štai jūsų svetainės skaitliuko paveikslėlio HTML kodas:
@@ -63,12 +68,47 @@ counter:
             modify: keisti
             text_fifth: profilyje savo skaitliuko dizainą
         form:
-            category: Kategorija
-            name: Skaitliuko pavadinimas
-            url: Skaitliuko URL adresas
-            description: Skaitliuko aprašymas
             submit: Kurti
             alerts:
                 limit: Jūs pasiekėte skaitliukų limitą.
                 exists: Pasirinkta kategorija neegiztuoja.
                 url_format: Blogas URl adreso formatas.
+    edit:
+        title: Skaitliuko redagavimas
+        header: Skaitliuko redagavimas
+        change_appearance: Keisti skaitliuko išvaizdą
+        alerts:
+            edited: Skaitliuko informacija buvo sėkmingai atnaujinta.
+        form:
+            submit: Redaguoti
+            alerts:
+                exists: Pasirinkta kategorija neegistuoja.
+                url_exists: Šis URL adresas jau egzistuoja.
+                url_format: Blogas URl adreso formatas.
+    editColors:
+        title: Skaitliuko išvaizda
+        header: Skaitliuko išvaizdos redagavimas
+        alerts:
+            edited: Skaitliuko išvaizda sėkmingai pakeista.
+        form:
+            backgroundColor: Fono spalva
+            borderColor: Kraštinių spalva
+            textColor: Pavadinimo teksto spalva
+            uniqueColor: Unikalaus skaičiaus spalva
+            totalColor: Paspaudimų skaičiaus spalva
+            barTotalColor: Diagramų paspaudimų spalva
+            barUniqueColor: Diagramų unikalių lankytojų spalva
+            transparentBackground: Naudoti permatomą foną
+            submit: Keisti
+    show:
+        url: Adresas
+        category: Kategorija
+        total_visitors: Išviso unikalių lankytojų
+        total_hits: Išviso paspaudimų
+        description: Aprašymas
+        stats:
+            text: Svetainės statistika
+            alert: Šiuo metu nėra jokių duomenų apie šią svetainę.
+            date: Data
+            unique: Unikalūs
+            hits: Paspaudimai

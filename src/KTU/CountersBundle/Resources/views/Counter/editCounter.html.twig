@@ -1,21 +1,23 @@
 {% extends 'KTUCountersBundle::base.html.twig' %}
+{% trans_default_domain 'KTUCountersBundle' %}
 {% form_theme form 'KTUCountersBundle:Form:form.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - Edit counter
+    {{ parent() }} - {{ 'counter.edit.title'|trans }}
 {% endblock %}
 
 {% block heading %}
-    <div class="panel-heading"><h3>Edit counter ({{ counter.name }})</h3></div>
+    <div class="panel-heading"><h3>{{ 'counter.edit.header'|trans }} ({{ counter.name }})</h3></div>
 {% endblock %}
 
 {% block body %}
     <div class="well">
-        <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id}) }}">Change counter's appearance</a>
+        <a href="{{ path('ktu_counters_edit_counter_colors', {'id': counter.id}) }}">
+            {{ 'counter.edit.change_appearance'|trans }}</a>
     </div>
     {% if isEdited %}
         <div class="alert alert-success">
-            Counter's information has been successfully changed.
+            {{ 'counter.edit.alerts.edited'|trans }}
         </div>
     {% endif %}
         {{ form_start(form, {'attr': {'role': 'form', 'class': 'form-horizontal' }}) }}
