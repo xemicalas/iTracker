@@ -59,11 +59,5 @@ class CategoriesModel
             ->getQuery();
         $category = $query->getOneOrNullResult();
         return $category;
-
-        /*$repository = $manager->getRepository('KTUCountersBundle:Categories');
-        $query = $repository->createQueryBuilder('c')->where('c.id = :category')
-            ->setParameter('category', $categoryId)->setMaxResults(1)->getQuery();
-        $category = $query->getOneOrNullResult();
-        return $category;*/
     }
 }
