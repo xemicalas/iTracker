@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ImageRendererController. Statistinio paveiksliuko (skaitliuko) atvaizdavimo kontroleris.
+ * Class ImageRendererController, statistical counter's image renderer.
  * @package KTU\CountersBundle\Controller
  */
 class ImageRendererController extends Controller
 {
     /**
-     * Atvaizduoja statistinį paveiksliuką pagal nurodyta skaitliuko ID ir tuo pačiu prideda puslapiui paspaudimą
+     * Renders statistical image by given counter's ID
      * @param Request $request
      * @param Counters $counter
      * @return Response
@@ -28,7 +28,6 @@ class ImageRendererController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $referer = $request->server->get('HTTP_REFERER');
 
-        // Lankytojas pridedamas tik esant REFERER (žiūrint paveiksliuka iš nuorodos, ne tiesiogiai)
         if (!empty($referer)) {
             $statsObj = new CounterStatistics();
             $statsObj->setCounter($counter);
@@ -38,18 +37,15 @@ class ImageRendererController extends Controller
             $manager->flush();
         }
 
-        // Gaunami skaitliuko statistiniai duomenys
         $stats_total = CounterStatisticsModel::getTotalStatsByCountersId($manager, $counter->getId());
         $stats_today = CounterStatisticsModel::getCountersVisitorsStatisticsByDate(
             $manager, $counter->getId(), date('Y-m-d'));
         $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -14);
 
-        // Sukuriamas paveiksliukas
         $image = new CounterImageRenderer(88, 31, $stats_today['total'], $stats_total['total']);
         $image->setCounterText($counter->getName());
         $image->setStatistics($stats);
 
-        // Nustatomi vartotojo parinkti nustatymai
         $image->setOption('background_color', ColorConverter::toColor($counter->getBackgroundColor()));
         $image->setOption('border_color', ColorConverter::toColor($counter->getBorderColor()));
         $image->setOption('text_color', ColorConverter::toColor($counter->getTextColor()));

@@ -8,7 +8,7 @@ use FOS\UserBundle\Controller\ProfileController as BaseController;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class ProfileController. Profilio kontroleris, atvaizduoja vartotojo turimus skaitliukus ir jų statistiką.
+ * Class ProfileController. Profile controller, which renders user's counters and statistics of them.
  * @package KTU\CountersBundle\Controller
  */
 class ProfileController extends BaseController
@@ -20,8 +20,6 @@ class ProfileController extends BaseController
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
-        // Gaunami vartotojo skaitliukai ir jų statistika
         $counters = CountersModel::getCountersAndStatsByUser($manager, $user->getId());
 
         return $this->container->get('templating')->renderResponse(

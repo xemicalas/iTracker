@@ -6,13 +6,13 @@ use KTU\CountersBundle\Model\CountersModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Class TopsController. Topų kontroleris.
+ * Class TopsController, renders TOP pages
  * @package KTU\CountersBundle\Controller
  */
 class TopsController extends Controller
 {
     /**
-     * Atvaizduoja top svetaines rūšiuojant pagal unikalius šiandienos lankytojus
+     * Renders top pages sorted by today's visitors
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showTopsAction()
