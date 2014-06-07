@@ -7,7 +7,7 @@ use KTU\CountersBundle\Model\CounterStatisticsModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use KTU\AdminBundle\Entity\Users;
+use KTU\CountersBundle\Entity\Users;
 use KTU\AdminBundle\Form\UsersType;
 
 /**
@@ -25,7 +25,7 @@ class UsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('KTUAdminBundle:Users')->findAll();
+        $entities = $em->getRepository('KTUCountersBundle:Users')->findAll();
 
         return $this->render('KTUAdminBundle:Users:index.html.twig', array(
             'entities' => $entities,
@@ -40,7 +40,7 @@ class UsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Users')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Users')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Users entity.');
@@ -61,7 +61,7 @@ class UsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Users')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Users')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Users entity.');
@@ -101,7 +101,7 @@ class UsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Users')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Users')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Users entity.');
@@ -134,7 +134,7 @@ class UsersController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('KTUAdminBundle:Users')->find($id);
+            $entity = $em->getRepository('KTUCountersBundle:Users')->find($id);
             $counters = CountersModel::getCountersByUserId($em, $entity->getId());
 
             if (!$entity) {

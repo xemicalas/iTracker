@@ -8,6 +8,7 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="category" type="string" column="category" length="255" nullable="false"/>
+    <field name="categoryEn" type="string" column="category_en" length="255" nullable="false"/>
     <one-to-many target-entity="Counters" field="counters"  mapped-by="cat">
     </one-to-many>
   </entity>

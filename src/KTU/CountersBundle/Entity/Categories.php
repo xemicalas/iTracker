@@ -21,6 +21,13 @@ class Categories
     protected $category;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="category_en", type="string", length=255, nullable=false)
+     */
+    protected $categoryEn;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -61,6 +68,29 @@ class Categories
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set categoryEn
+     *
+     * @param string $categoryEn
+     * @return Categories
+     */
+    public function setCategoryEn($categoryEn)
+    {
+        $this->categoryEn = $categoryEn;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryEn
+     *
+     * @return string
+     */
+    public function getCategoryEn()
+    {
+        return $this->categoryEn;
     }
 
     /**
