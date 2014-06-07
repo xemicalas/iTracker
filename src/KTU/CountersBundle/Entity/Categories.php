@@ -23,9 +23,9 @@ class Categories
     /**
      * @var string
      *
-     * @ORM\Column(name="category_en", type="string", length=255, nullable=false)
+     * @ORM\Column(name="category_lt", type="string", length=255, nullable=false)
      */
-    protected $categoryEn;
+    protected $categoryLt;
 
     /**
      * @var integer
@@ -71,26 +71,26 @@ class Categories
     }
 
     /**
-     * Set categoryEn
+     * Set categoryLt
      *
-     * @param string $categoryEn
+     * @param string $categoryLt
      * @return Categories
      */
-    public function setCategoryEn($categoryEn)
+    public function setCategoryLt($categoryLt)
     {
-        $this->categoryEn = $categoryEn;
+        $this->categoryLt = $categoryLt;
 
         return $this;
     }
 
     /**
-     * Get categoryEn
+     * Get categoryLt
      *
      * @return string
      */
-    public function getCategoryEn()
+    public function getCategoryLt()
     {
-        return $this->categoryEn;
+        return $this->categoryLt;
     }
 
     /**
