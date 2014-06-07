@@ -29,7 +29,7 @@ class UsersType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'KTU\AdminBundle\Entity\Users'
+            'data_class' => 'KTU\CountersBundle\Entity\Users'
         ));
     }
 

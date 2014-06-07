@@ -7,7 +7,7 @@ use KTU\CountersBundle\Model\CounterStatisticsModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use KTU\AdminBundle\Entity\Categories;
+use KTU\CountersBundle\Entity\Categories;
 use KTU\AdminBundle\Form\CategoriesType;
 
 /**
@@ -25,7 +25,7 @@ class CategoriesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('KTUAdminBundle:Categories')->findAll();
+        $entities = $em->getRepository('KTUCountersBundle:Categories')->findAll();
 
         return $this->render('KTUAdminBundle:Categories:index.html.twig', array(
             'entities' => $entities,
@@ -97,7 +97,7 @@ class CategoriesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Categories')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Categories')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Categories entity.');
@@ -118,7 +118,7 @@ class CategoriesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Categories')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Categories')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Categories entity.');
@@ -160,7 +160,7 @@ class CategoriesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('KTUAdminBundle:Categories')->find($id);
+        $entity = $em->getRepository('KTUCountersBundle:Categories')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Categories entity.');
@@ -193,7 +193,7 @@ class CategoriesController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('KTUAdminBundle:Categories')->find($id);
+            $entity = $em->getRepository('KTUCountersBundle:Categories')->find($id);
             $counters = CountersModel::getCountersByCategory($em, $entity->getId());
 
             if (!$entity) {

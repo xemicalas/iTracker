@@ -37,7 +37,7 @@ class CountersType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'KTU\AdminBundle\Entity\Counters'
+            'data_class' => 'KTU\CountersBundle\Entity\Counters'
         ));
     }
 

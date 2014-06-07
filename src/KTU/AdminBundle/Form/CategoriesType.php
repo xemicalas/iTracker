@@ -25,7 +25,7 @@ class CategoriesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'KTU\AdminBundle\Entity\Categories'
+            'data_class' => 'KTU\CountersBundle\Entity\Categories'
         ));
     }
 
