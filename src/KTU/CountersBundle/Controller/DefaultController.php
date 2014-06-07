@@ -10,23 +10,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class DefaultController. Homepage kontroleris.
+ * Class DefaultController. Homepage controller.
  * @package KTU\CountersBundle\Controller
  */
 class DefaultController extends Controller
 {
     /**
-     * Atvaizduojamas pagrindinis puslapis. Jame atvaizduojami yra TOP skaitliukai ir visos kategorijos.
+     * Renders main page, includes TOP counters and all categories
+     * @param Request $request
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
+        $locale = $request->getLocale();
+        $locator = new Locale($request);
+        $columnName = $locator->getCategoryColumn($locale);
+
         $topPages = $this->container->getParameter('ktu_counters.top_pages');
-        // Gaunami pirmi top $topPages skaitliukai
         $counters = CountersModel::getTopCounters($manager, $topPages, date('Y-m-d'));
-        // Gaunamos visos kategorijos
-        $categories = CategoriesModel::getCategoriesInfo($manager);
+        $categories = CategoriesModel::getCategoriesInfo($manager, $columnName);
 
         return $this->render('KTUCountersBundle:Default:index.html.twig', array(
             'counters' => $counters,

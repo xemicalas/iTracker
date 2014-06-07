@@ -93,7 +93,12 @@ class Handler extends ContainerAware
      */
     public function renderCategories()
     {
-        $categories = CategoriesModel::getCategoriesInfo($this->manager);
+        $locale = $this->request->getLocale();
+        $locator = new Locale($this->request);
+        $columnName = $locator->getCategoryColumn($locale);
+
+        $categories = CategoriesModel::getCategoriesInfo($this->manager, $columnName);
+
         $this->twig->addGlobal('categories', $categories);
     }
 

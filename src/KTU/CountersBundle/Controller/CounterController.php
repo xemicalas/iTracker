@@ -2,6 +2,7 @@
 
 namespace KTU\CountersBundle\Controller;
 
+use KTU\CountersBundle\Components\Locale;
 use KTU\CountersBundle\Entity\Counters;
 use KTU\CountersBundle\Form\CounterType;
 use KTU\CountersBundle\Form\CounterColorType;
@@ -16,27 +17,27 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Class CounterController. Skaitliuko kontroleris, kuris kontroliuoja skaitliuko
- * atvaidavimą, kūrimą, trinimą, redagavimą.
+ * Class CounterController, counter's controller which controls counters rendering, creation, deletion and editing.
  * @package KTU\CountersBundle\Controller
  */
 class CounterController extends Controller
 {
 
     /**
-     * Atvaizduoja skaitliuko informaciją pagal nurodyta skaitliuko ID
+     * Renders counters information by given counter ID
+     * @param Request $request
      * @param Counters $counter
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showCounterAction(Counters $counter)
+    public function showCounterAction(Request $request, Counters $counter)
     {
         $manager = $this->getDoctrine()->getManager();
-        $category = CategoriesModel::getCategoryById($manager, $counter->getCat());
+        $locale = $request->getLocale();
+        $locator = new Locale($request);
+        $columnName = $locator->getCategoryColumn($locale);
 
-        // Gauną skaitliuko paskutinių 10 dienų statistiką
+        $category = CategoriesModel::getCategoryById($manager, $counter->getCat(), $columnName);
         $stats = CounterStatisticsModel::getLastStatsByCountersId($manager, $counter->getId(), -14);
-
-        // Gauna absoliučius skaitliuko statistinius duomenis
         $totals = CounterStatisticsModel::getTotalStatsByCountersId($manager, $counter->getId());
 
         return $this->render('KTUCountersBundle:Counter:showCounter.html.twig', array(
@@ -48,7 +49,7 @@ class CounterController extends Controller
     }
 
     /**
-     * Atvaizduoja skaitliuko kūrimo puslapio formą.
+     * Renders counter's creation form
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
@@ -66,7 +67,6 @@ class CounterController extends Controller
         $createText = $translator->trans('counter.create.form.submit');
         $form = $this->createForm(new CounterType($createText, 'create', 'KTUCountersBundle'), $counter);
 
-        // Jei forma buvo patvirtinta
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             $data = $form->getData();
@@ -82,13 +82,11 @@ class CounterController extends Controller
                 $form->addError(new FormError(
                     $translator->trans('counter.create.form.alerts.exists', array(), 'KTUCountersBundle')));
             }
-            // Patikrinama ar teisingas skaitliuko URL adreso formatas
             if (!preg_match('/^(www\.)?([A-Za-z0-9-]+\.)+\w{2,4}/i', $data->getUrl())) {
                 $form->addError(new FormError(
                     $translator->trans('counter.create.form.alerts.url_format', array(), 'KTUCountersBundle')));
             }
 
-            // Jei patvirtinta forma yra teisinga, tuomet kuriamas skaitliukas
             if ($form->isValid()) {
                 $isCreated = true;
                 $counter = new Counters();
@@ -119,7 +117,7 @@ class CounterController extends Controller
     }
 
     /**
-     * Atvaizduoja skaitliuko redagavimo puslapio formą.
+     * Renders counter's editing form
      * @param Request $request
      * @param Counters $counter
      * @return \Symfony\Component\HttpFoundation\Response
@@ -136,13 +134,11 @@ class CounterController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         $translator = $this->container->get('translator');
 
-        // Leidžiama redaguoti tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
             $editText = $translator->trans('counter.edit.form.submit');
             $counterUrl = $counter->getUrl();
             $form = $this->createForm(new CounterType($editText, 'edit', 'KTUCountersBundle'), $counter);
 
-            // Jei forma buvo patvirtinta
             if ($request->getMethod() == 'POST') {
                 $form->handleRequest($request);
                 $data = $form->getData();
@@ -157,13 +153,11 @@ class CounterController extends Controller
                     $form->addError(new FormError(
                         $translator->trans('counter.edit.form.alerts.url_exists', array(), 'KTUCountersBundle')));
                 }
-                // Patikrinama ar teisingas skaitliuko URL adreso formatas
                 if (!preg_match('/^(www\.)?([A-Za-z0-9-]+\.)+\w{2,4}/i', $data->getUrl())) {
                     $form->addError(new FormError(
                         $translator->trans('counter.edit.form.alerts.url_format', array(), 'KTUCountersBundle')));
                 }
 
-                // Jei viskas tvarkinga, tuomet atnaujinami skaitliuko duomenys
                 if ($form->isValid()) {
                     $isEdited = true;
                     $counter->setCat($cat);
@@ -185,7 +179,7 @@ class CounterController extends Controller
     }
 
     /**
-     * Kontroliuoja skaitliuko trynimą
+     * Controls counters deletion
      * @param Counters $counter
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
@@ -199,7 +193,6 @@ class CounterController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        // Trinti leidžiama tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
             $stats = CounterStatisticsModel::getStatsByCounterId($manager, $counter->getId());
 
@@ -217,7 +210,7 @@ class CounterController extends Controller
     }
 
     /**
-     * Atvaizduoja skaitliuko spalvų keitimo formą.
+     * Controls counter's colors editing form
      * @param Request $request
      * @param Counters $counter
      * @return \Symfony\Component\HttpFoundation\Response
@@ -233,7 +226,6 @@ class CounterController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        // Redaguoti leidžiama tik vartotojo skaitliuką
         if ($user->getId() == $counter->getUserId()->getId()) {
             $form = $this->createForm(new CounterColorType('editColors', 'KTUCountersBundle'), $counter);
             if ($request->getMethod() == 'POST') {

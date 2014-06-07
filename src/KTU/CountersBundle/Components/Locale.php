@@ -115,4 +115,21 @@ class Locale
             }
         }
     }
+
+    /**
+     * Gets categories' column name by the given locale
+     * @param $locale
+     * @return string
+     */
+    public function getCategoryColumn($locale) {
+        switch ($locale) {
+            case 'lt_LT':
+                $columnLocale = 'categoryLt';
+                break;
+            default:
+                $columnLocale = 'category';
+                break;
+        }
+        return $columnLocale;
+    }
 }
