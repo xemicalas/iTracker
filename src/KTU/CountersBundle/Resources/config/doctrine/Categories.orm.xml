@@ -3,6 +3,7 @@
   <entity name="KTU\CountersBundle\Entity\Categories" table="categories">
     <unique-constraints>
       <unique-constraint name="category_UNIQUE" columns="category"/>
+      <unique-constraint name="category_lt_UNIQUE" columns="category_lt"/>
     </unique-constraints>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
