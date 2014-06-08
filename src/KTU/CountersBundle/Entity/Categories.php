@@ -42,6 +42,12 @@ class Categories
      */
     protected $counters;
 
+    /**
+     * Category locale
+     * @var string
+     */
+    protected $locale;
+
     public function __construct($locale = 'en')
     {
         $this->counters = new ArrayCollection();
@@ -104,8 +110,21 @@ class Categories
         return $this->id;
     }
 
+    /**
+     * Sets locale
+     * @param $locale
+     */
+    public function setLocale($locale) {
+        $this->locale = $locale;
+    }
+
     public function __toString()
     {
-        return $this->category;
+        switch ($this->locale) {
+            case 'lt_LT':
+                return $this->categoryLt;
+            default:
+                return $this->category;
+        }
     }
 }

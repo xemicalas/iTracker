@@ -42,7 +42,7 @@ class CategoriesModel
     }
 
     /**
-     * Gets particular category by ID
+     * Gets particular category with it's translated name by ID
      * @param EntityManager $manager
      * @param $categoryId
      * @param string $categoryColumn Category's column name
@@ -52,6 +52,37 @@ class CategoriesModel
     {
         $query = $manager->createQueryBuilder()
             ->select('categories.id, categories.' . $categoryColumn . ' AS category')
+            ->from('KTUCountersBundle:Categories', 'categories')
+            ->where('categories.id = :id')
+            ->setParameter('id', $categoryId)
+            ->setMaxResults(1)
+            ->getQuery();
+        $category = $query->getOneOrNullResult();
+        return $category;
+    }
+
+    /**
+     * Formats categories to choice list
+     * @param array $categories Categories array
+     * @param $locale Locale
+     */
+    public static function formatToChoiceList(array $categories, $locale)
+    {
+        foreach ($categories as &$category) {
+            $category->setLocale($locale);
+        }
+    }
+
+    /**
+     * Gets all category's columns by given ID
+     * @param EntityManager $manager
+     * @param $categoryId
+     * @return mixed
+     */
+    public static function getFullCategoryById(EntityManager $manager, $categoryId)
+    {
+        $query = $manager->createQueryBuilder()
+            ->select('categories')
             ->from('KTUCountersBundle:Categories', 'categories')
             ->where('categories.id = :id')
             ->setParameter('id', $categoryId)

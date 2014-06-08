@@ -11,18 +11,20 @@ class CounterType extends AbstractType
     private $submitText;
     private $validationGroups;
     private $translationDomain;
+    private $choiceList;
 
-    public function __construct($submitText, $validationGroups, $translationDomain)
+    public function __construct($submitText, $validationGroups, $choiceList, $translationDomain)
     {
         $this->submitText = $submitText;
         $this->validationGroups = $validationGroups;
+        $this->choiceList = $choiceList;
         $this->translationDomain = $translationDomain;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cat', null, array('label' => 'counter.form.category'))
+            ->add('cat', null, array('label' => 'counter.form.category', 'choices' => $this->choiceList))
             ->add('name', 'text', array('label' => 'counter.form.name'))
             ->add('url', 'text', array('label' => 'counter.form.url'))
             ->add('counterDesc', 'textarea', array('label' => 'counter.form.description'))

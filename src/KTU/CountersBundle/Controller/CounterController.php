@@ -64,16 +64,18 @@ class CounterController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
         $counter = new Counters();
+        $categories = CategoriesModel::getCategories($manager);
+        $categories = CategoriesModel::formatToChoiceList($categories, $request->getLocale());
         $translator = $this->container->get('translator');
         $createText = $translator->trans('counter.create.form.submit');
-        $form = $this->createForm(new CounterType($createText, 'create', 'KTUCountersBundle'), $counter);
+        $form = $this->createForm(new CounterType($createText, 'create', $categories, 'KTUCountersBundle'), $counter);
 
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             $data = $form->getData();
 
             $counters = CountersModel::getCountersByUserId($manager, $user->getId());
-            $cat = CategoriesModel::getCategoryById($manager, $data->getCat());
+            $cat = CategoriesModel::getFullCategoryById($manager, $data->getCat());
 
             if (count($counters) >= 5) {
                 $form->addError(new FormError(
@@ -138,12 +140,14 @@ class CounterController extends Controller
         if ($user->getId() == $counter->getUserId()->getId()) {
             $editText = $translator->trans('counter.edit.form.submit');
             $counterUrl = $counter->getUrl();
-            $form = $this->createForm(new CounterType($editText, 'edit', 'KTUCountersBundle'), $counter);
+            $categories = CategoriesModel::getCategories($manager);
+            $categories = CategoriesModel::formatToChoiceList($categories, $request->getLocale());
+            $form = $this->createForm(new CounterType($editText, 'edit', $categories, 'KTUCountersBundle'), $counter);
 
             if ($request->getMethod() == 'POST') {
                 $form->handleRequest($request);
                 $data = $form->getData();
-                $cat = CategoriesModel::getCategoryById($manager, $data->getCat());
+                $cat = CategoriesModel::getFullCategoryById($manager, $data->getCat());
                 $counterByUrl = CountersModel::getCounterByUrl($manager, $data->getUrl());
 
                 if ($cat == null) {
