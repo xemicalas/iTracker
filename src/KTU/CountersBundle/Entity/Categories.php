@@ -42,9 +42,10 @@ class Categories
      */
     protected $counters;
 
-    public function __construct()
+    public function __construct($locale = 'en')
     {
         $this->counters = new ArrayCollection();
+        $this->locale = $locale;
     }
 
     /**
@@ -63,7 +64,7 @@ class Categories
     /**
      * Get category
      *
-     * @return string 
+     * @return string
      */
     public function getCategory()
     {
@@ -96,7 +97,7 @@ class Categories
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

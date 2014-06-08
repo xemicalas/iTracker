@@ -3,6 +3,7 @@
 namespace KTU\CountersBundle\Controller;
 
 use KTU\CountersBundle\Components\Locale;
+use KTU\CountersBundle\Entity\Categories;
 use KTU\CountersBundle\Entity\Counters;
 use KTU\CountersBundle\Form\CounterType;
 use KTU\CountersBundle\Form\CounterColorType;

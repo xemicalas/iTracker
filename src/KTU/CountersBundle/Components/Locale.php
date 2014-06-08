@@ -65,7 +65,8 @@ class Locale
      * @param $locale string Locale
      * @return string
      */
-    private function analyze($locale) {
+    private function analyze($locale)
+    {
         switch ($locale) {
             case 'lt':
                 return 'lt_LT';
@@ -88,7 +89,8 @@ class Locale
      * Sets the locale
      * @param $locale
      */
-    public function setLocale($locale) {
+    public function setLocale($locale)
+    {
         $this->locale = $locale;
         $this->request->setLocale($this->locale);
     }
@@ -97,7 +99,8 @@ class Locale
      * Gets locale from cookies data
      * @return mixed
      */
-    public function getCookieLocale() {
+    public function getCookieLocale()
+    {
         return $this->request->cookies->get('locale');
     }
 
@@ -121,7 +124,8 @@ class Locale
      * @param $locale
      * @return string
      */
-    public function getCategoryColumn($locale) {
+    public function getCategoryColumn($locale)
+    {
         switch ($locale) {
             case 'lt_LT':
                 $columnLocale = 'categoryLt';

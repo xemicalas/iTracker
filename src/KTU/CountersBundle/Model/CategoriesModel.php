@@ -16,7 +16,7 @@ class CategoriesModel
     public static function getCategoriesInfo(EntityManager $manager, $categoryColumn)
     {
         $query = $manager->createQueryBuilder()
-            ->select('categories.id, categories.'.$categoryColumn.' AS category, COUNT(counters.id) AS counters_amount')
+            ->select('categories.id, categories.' . $categoryColumn . ' AS category, COUNT(counters.id) AS counters_amount')
             ->from('KTUCountersBundle:Categories', 'categories')
             ->leftJoin('categories.counters', 'counters')
             ->groupBy('categories.id')
@@ -51,7 +51,7 @@ class CategoriesModel
     public static function getCategoryById(EntityManager $manager, $categoryId, $categoryColumn = 'category')
     {
         $query = $manager->createQueryBuilder()
-            ->select('categories.id, categories.'.$categoryColumn.' AS category')
+            ->select('categories.id, categories.' . $categoryColumn . ' AS category')
             ->from('KTUCountersBundle:Categories', 'categories')
             ->where('categories.id = :id')
             ->setParameter('id', $categoryId)
