@@ -64,13 +64,15 @@ class CategoriesModel
     /**
      * Formats categories to choice list
      * @param array $categories Categories array
-     * @param $locale Locale
+     * @param $locale
+     * @return array
      */
     public static function formatToChoiceList(array $categories, $locale)
     {
         foreach ($categories as &$category) {
             $category->setLocale($locale);
         }
+        return $categories;
     }
 
     /**

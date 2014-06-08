@@ -59,7 +59,7 @@ class CounterImageRenderer extends ImageRenderer
         $this->options['unique_padding_left'] = 5;
         $this->options['total_unique_padding_left'] = 5;
         $this->options['counter_text_padding_left'] = 6;
-        $this->options['stats_start_x'] = 40;
+        $this->options['stats_start_x'] = 45;
         $this->options['stats_start_y'] = 20;
         $this->options['stats_max_height'] = 18;
         $this->options['background_color'] = new Color(240, 240, 240);
