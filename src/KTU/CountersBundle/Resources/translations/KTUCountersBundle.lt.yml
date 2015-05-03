@@ -12,6 +12,8 @@ global:
         modify: keisti
         text_fifth: profilyje savo skaitliuko dizainą
 base:
+    meta:
+        description: %project_name% - vartotojų sekimo sistema svetainių kūrėjams.
     header:
         motto: %project_name% - Statistinių skaitliukų registracija
         description: Vartotojų sekimo sistema jūsų svetainei
@@ -49,6 +51,7 @@ base:
         users_registered: Užregistruota vartotojų
     footer:
         copyright: %copyright_year% %project_name%, Visos teisės saugomos
+        contacts: Kontaktai
 home:
     view:
         heading: Pagrindinis

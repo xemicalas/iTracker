@@ -2,13 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
+    <meta name="author" content="Marius Miškinis">
+    <meta name="description" content="{{ 'base.meta.description'|trans({'%project_name%': project_name}) }}">
+    <meta name="keywords" content="skaitliuku registracija,lankomumo statistika,nemokami skaitliukai,user tracking system,free hit counter,web counter">
     <title>{% block title %}{{ project_name }}{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
     {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -22,7 +25,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a id="brand-logo" href="{{ path('ktu_counters_homepage') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="logo"/>
+                <img src="{{ asset('images/logo.png') }}" alt="Website logo"/>
             </a>
         </div>
 
@@ -214,7 +217,7 @@
                 </ul>
                 <div class="line"></div>
                 <div id="banners" class="center-block">
-                    <img src="{{ asset('images/placeholder_140x140.jpg') }}" alt="140x140"
+                    <img src="{{ asset('images/placeholder_140x140.jpg') }}" alt="Ad placeholder"
                          class="img-rounded img-banner"/>
                 </div>
             </div>
@@ -231,12 +234,22 @@
 </div>
 <div id="footer">
     <div class="container" id="footer-body">
-        &copy; {{ 'base.footer.copyright'|trans({'%copyright_year%': copyright_year,
-        '%project_name%': project_name}) }}
-        <div id="counter-footer">
-            <a href="http://marmis2.stud.if.ktu.lt/symfony/web/counter/5/view">
-                <img src="http://marmis2.stud.if.ktu.lt/symfony/web/render/5"
-                     alt="marmis2.stud.if.ktu.lt/symfony/web/"/></a>
+        <div class="col-md-6">
+            &copy; {{ 'base.footer.copyright'|trans({'%copyright_year%': copyright_year,
+            '%project_name%': project_name}) }}
+            <div id="counter-footer">
+                <a href="http://marmis2.stud.if.ktu.lt/symfony/web/counter/5/view">
+                    <img src="http://marmis2.stud.if.ktu.lt/symfony/web/render/5"
+                         alt="marmis2.stud.if.ktu.lt/symfony/web/"/></a>
+            </div>
+        </div>
+        <div class="col-md-6" id="contacts">
+            {{ 'base.footer.contacts'|trans }}
+            <div id="contact-listing">
+                <ul>
+                    <li>m.miskinis@ktu.edu</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

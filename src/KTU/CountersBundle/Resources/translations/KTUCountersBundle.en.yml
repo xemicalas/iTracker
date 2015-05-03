@@ -12,6 +12,8 @@ global:
         modify: modify
         text_fifth: you counter's styling in your profile.
 base:
+    meta:
+        description: %project_name% is user tracking system for website developers.
     header:
         motto: %project_name% - Counters registry
         description: User tracking system for your website
@@ -49,6 +51,7 @@ base:
         users_registered: Users registered
     footer:
         copyright: %copyright_year% %project_name%, All rights reserved
+        contacts: Contacts
 home:
     view:
         heading: Main page
